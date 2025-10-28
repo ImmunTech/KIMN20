@@ -1,0 +1,469 @@
+---
+title: "Omics - Analysis of large-scale biomolecular datasets"
+subtitle: "KIMN20 - LTH"
+author: 
+  - "Daniel Nilsson"
+  - "Massimiliano Volpe"
+date: today
+format: 
+  revealjs:
+    width: 1050
+    height: 700
+    margin: 0.1
+    center: false
+    self-contained: true
+    css: custom.css
+execute:
+  enabled: false
+---
+
+## Introduction to Linux
+
+### Course date: 04 November 2025
+## Introduction to Linux
+
+### Course date: 04 November 2025
+### Last modified: {{< meta date >}}
+
+![Linux Terminal](https://img.shields.io/badge/Linux-Terminal-green?style=for-the-badge&logo=linux&logoColor=white)
+
+## Welcome to Linux Commands! 🐧
+
+## Welcome to Linux Commands! 🐧
+
+This interactive presentation will teach you the fundamental Linux commands you'll need to navigate and work with the command line.
+
+### What we'll cover:
+- Navigation commands (pwd, ls, cd, paths)
+- File operations (mkdir, touch, cp, mv, rm, tar)
+- Text processing (cat, grep, less, head, tail, nano)
+- System information (whoami, uname, df, top)
+- Package management
+- Getting help and shortcuts
+
+---
+
+## Getting Started
+
+### Opening the Terminal
+
+- **macOS**: Press `Cmd + Space`, type "Terminal", press Enter
+- **Linux**: Press `Ctrl + Alt + T`
+- **Windows**: Use WSL or Git Bash
+
+### Your First Command
+
+```bash
+# This is a comment - it won't execute
+echo "Hello, Linux!"
+```
+
+Try running this command in your terminal!
+
+### exit - Exit the Terminal
+
+Closes the current shell session.
+
+```bash
+exit
+```
+
+---
+
+## Navigation Commands
+
+### pwd - Print Working Directory
+
+Shows your current location in the file system.
+
+```bash
+pwd
+```
+
+### ls - List Directory Contents
+
+Lists files and directories in the current directory.
+
+```bash
+ls
+ls -l  # Long listing format
+ls -a  # Show hidden files
+```
+
+### cd - Change Directory
+
+Changes your current working directory.
+
+```bash
+cd directory_name  # Relative path
+cd /absolute/path  # Absolute path
+cd ..              # Go up one directory
+cd ~               # Go to home directory
+cd -               # Go to previous directory
+```
+
+---
+
+### Absolute vs Relative Paths
+
+- **Absolute paths**: Start with `/` and specify the full path from root
+- **Relative paths**: Start from current directory, use `.` for current, `..` for parent
+
+```bash
+# Absolute path
+cd /home/user/documents
+
+# Relative path
+cd documents  # If you're in /home/user/
+cd ../sibling # Go to sibling directory
+```
+
+---
+
+## File Operations
+
+### mkdir - Make Directory
+
+Creates a new directory.
+
+```bash
+mkdir my_folder                    # Create single directory
+mkdir -p parent/child/grandchild   # Create nested directories
+```
+
+### touch - Create Empty File
+
+```bash
+touch new_file.txt                   # Create single empty file
+touch file1.txt file2.txt file3.txt  # Create multiple files
+```
+
+### cp - Copy Files
+
+```bash
+cp source.txt destination.txt        # Copy single file
+cp -r source_dir destination_dir     # Copy directory recursively
+```
+
+---
+
+## More File Operations
+
+### mv - Move/Rename Files
+
+```bash
+mv old_name.txt new_name.txt     # Rename
+mv file.txt /path/to/directory/  # Move
+```
+
+### rm - Remove Files
+
+```bash
+rm file.txt
+rm -r directory/
+rm -i file.txt      # Interactive mode
+```
+
+**⚠️ Warning:** `rm -rf /` will delete everything! Be careful!
+
+---
+
+### tar - Archive Files
+
+Create and extract compressed archives.
+
+```bash
+# Create archive
+tar -czf archive.tar.gz directory/
+
+# Extract archive
+tar -xzvf archive.tar.gz
+
+# List archive contents
+tar -tzf archive.tar.gz
+```
+
+---
+
+## Text Processing
+
+### cat - Concatenate and Display
+
+```bash
+cat file.txt              # Display single file
+cat file1.txt file2.txt   # Display multiple files
+```
+
+### grep - Search Text
+
+```bash
+grep "search_term" file.txt          # Search in single file
+grep -r "pattern" /path/to/search/   # Search recursively
+grep -i "case_insensitive" file.txt  # Case-insensitive search
+```
+
+### less - View File Contents
+
+Views file contents one page at a time (better than cat for large files).
+
+```bash
+less file.txt
+# Navigation: space (next page), b (previous), q (quit)
+```
+
+---
+
+### head - Show Beginning of File
+
+Shows the first few lines of a file.
+
+```bash
+head file.txt
+head -n 20 file.txt  # First 20 lines
+```
+
+### tail - Show End of File
+
+Shows the last few lines of a file.
+
+```bash
+tail file.txt
+tail -n 20 file.txt  # Last 20 lines
+tail -f file.txt     # Follow file (real-time updates)
+```
+
+---
+
+### nano - Simple Text Editor
+
+Basic command-line text editor.
+
+```bash
+nano file.txt
+# Ctrl+O (save), Ctrl+X (exit), Ctrl+W (search)
+```
+
+---
+
+## System Information
+
+### whoami - Who Am I?
+
+```bash
+whoami
+```
+
+### uname - System Information
+
+```bash
+uname -a  # Show all system information
+uname -r  # Show kernel release version
+```
+
+### df - Disk Free Space
+
+```bash
+df -h  # Show disk usage in human-readable format
+```
+
+### top - Monitor Processes
+
+Shows real-time system processes and resource usage.
+
+```bash
+top  # Display running processes with CPU/memory usage
+# Press 'q' to quit, 'h' for help
+```
+
+---
+
+## Package Management
+
+### Ubuntu/Debian (apt)
+
+```bash
+sudo apt update
+sudo apt install package_name
+sudo apt remove package_name
+```
+
+### CentOS/RHEL (yum/dnf)
+
+```bash
+sudo yum install package_name
+sudo yum remove package_name
+```
+
+### macOS (brew)
+
+```bash
+brew install package_name
+brew uninstall package_name
+```
+
+---
+
+## Practice Time! 💻
+
+### Exercise 1: Navigation
+
+1. Open your terminal
+2. Check your current directory with `pwd`
+3. List the contents with `ls`
+4. Create a new directory called `linux_practice`
+5. Change into that directory
+
+```bash
+pwd
+ls -la
+mkdir -p linux_practice
+cd linux_practice
+```
+
+---
+
+### Exercise 2: File Operations
+
+1. Create a text file called `notes.txt`
+2. Add some text to it using `echo "Hello Linux" > notes.txt`
+3. Display the contents with `cat`
+4. Copy the file to `backup.txt`
+5. List the directory contents
+
+```bash
+echo "Hello Linux" > notes.txt
+cat notes.txt
+cp notes.txt backup.txt
+ls -la
+```
+
+---
+
+## Useful Shortcuts
+
+### Command Line Shortcuts
+
+- `↑/↓` - Navigate command history
+- `Tab` - Auto-complete commands/files
+- `Ctrl + C` - Cancel current command
+- `Ctrl + L` - Clear screen
+- `Ctrl + A` - Go to beginning of line
+- `Ctrl + E` - Go to end of line
+
+---
+
+### Wildcards
+
+- `*` - Matches any characters
+- `?` - Matches single character
+- `[abc]` - Matches any of a, b, or c
+
+**Example:**
+```bash
+ls *.txt
+cp file?.txt backup/
+```
+
+```bash
+ls linux_practice/*.txt  # List all .txt files in linux_practice
+```
+
+---
+
+## Getting Help
+
+### man - Manual Pages
+
+```bash
+man ls
+man -k "search term"
+```
+
+### --help Flag
+
+```bash
+ls --help
+```
+
+### tldr - Simplified Help
+
+```bash
+tldr ls
+```
+
+---
+
+## Common Mistakes & Tips
+
+### Common Errors
+
+- `Permission denied` - Use `sudo` for admin tasks
+- `Command not found` - Check spelling, PATH
+- `No such file or directory` - Verify paths
+
+### Best Practices
+
+- Use `ls` before `rm` to double-check
+- Use `man` or `--help` for unfamiliar commands
+- Backup important files before operations
+- Use tab completion to avoid typos
+
+---
+
+## Next Steps
+
+### What to Learn Next
+
+- File permissions (`chmod`, `chown`)
+- Process management (`ps`, `kill`)
+- Advanced text editors (`vim`, `emacs`)
+- Shell scripting basics
+- Networking commands (`ping`, `curl`, `ssh`)
+- User management (`useradd`, `passwd`)
+
+### Resources
+
+- [Linux Command Line Basics](https://ubuntu.com/desktop/tutorial/command-line-for-beginners)
+- [ExplainShell](https://explainshell.com/) - Explains shell commands
+- [tldr](https://tldr.sh/) - Simplified command documentation
+
+---
+
+## Quiz Time! 🧠
+
+### Question 1
+Which command shows your current directory?
+- A) `ls`
+- B) `pwd`
+- C) `cd`
+
+### Question 2
+How do you create a new directory?
+- A) `touch newdir`
+- B) `mkdir newdir`
+- C) `cp newdir`
+
+### Question 3
+What's the safest way to delete a file?
+- A) `rm file.txt`
+- B) `rm -rf file.txt`
+- C) `rm -i file.txt`
+
+*(Answers: 1-B, 2-B, 3-C)*
+
+---
+
+## Thank You!
+
+You've completed the basic Linux commands tutorial!
+
+### Remember:
+- Practice regularly
+- Use `man` for help
+- Start with simple commands
+- Build complexity gradually
+
+### Questions?
+Feel free to ask your instructor or classmates!
+
+🐧 Happy Linux learning! 🐧

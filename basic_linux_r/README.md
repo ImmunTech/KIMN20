@@ -1,5 +1,5 @@
-# KIMN20
-Omics - Analysis of large-scale biomolecular datasets
+# Basic Linux and R
+Introduction to Linux and R commands.
 
 ## Linux Commands Interactive Presentation
 
@@ -11,9 +11,9 @@ An interactive Quarto presentation for teaching basic Linux commands to students
 basic_linux_r/
 ├── README.md              # This file - setup and usage guide
 ├── custom.css             # Custom styling for the presentation
-├── linux-commands-tutorial.qmd    # Source file (Quarto format)
-├── linux-commands-tutorial.html   # Rendered presentation (reveal.js slides)
-├── linux-commands-tutorial.ipynb  # Jupyter notebook for live coding
+├── intro_to_linux.qmd     # Source file (Quarto format)
+├── intro_to_linux.html    # Rendered presentation (reveal.js slides)
+├── intro_to_linux.ipynb   # Jupyter notebook for live coding
 ├── docker/
 │   └── Dockerfile         # Docker container definition
 └── docs/
@@ -27,7 +27,7 @@ basic_linux_r/
 
 **Option 1: View the HTML presentation locally**
 ```bash
-open linux-commands-tutorial.html
+open intro_to_linux.html
 ```
 
 **Option 2: Live Interactive Coding with Docker**
@@ -38,19 +38,19 @@ For teaching and live execution:
 docker build --platform linux/amd64 -t kimn20 docker/
 
 # Run with a different port if 8888 is busy
-docker run -p 8889:8888 kimn20
+docker run -p 8888:8888 kimn20
 ```
 
 Then open in your browser:
 - **JupyterLab (interactive)**: http://localhost:8889
-- Open `linux-commands-tutorial.ipynb` in JupyterLab
+- Open `intro_to_linux.ipynb` in JupyterLab
 - **Execute cells with Shift+Enter** to run bash commands live!
 
 ### 📚 What's Included
 
-- `linux-commands-tutorial.qmd` - Source file (Quarto format)
-- `linux-commands-tutorial.html` - Rendered presentation (reveal.js slides)
-- `linux-commands-tutorial.ipynb` - Jupyter notebook for live coding
+- `intro_to_linux.qmd` - Source file (Quarto format)
+- `intro_to_linux.html` - Rendered presentation (reveal.js slides)
+- `intro_to_linux.ipynb` - Jupyter notebook for live coding
 - `Dockerfile` - Container with all dependencies
 - `custom.css` - Presentation styling
 - `docs/` - Teaching guides and setup documentation
@@ -68,7 +68,7 @@ Then open in your browser:
 
 **Static presentation (no execution needed):**
 ```bash
-open linux-commands-tutorial.html
+open intro_to_linux.html
 # Use arrow keys to navigate slides
 # Show command examples to students
 ```
@@ -77,7 +77,7 @@ open linux-commands-tutorial.html
 ```bash
 docker run -p 8888:8888 kimn20
 # Open http://localhost:8888 in browser
-# Open linux-commands-tutorial.ipynb
+# Open intro_to_linux.ipynb
 # Click any cell and press Shift+Enter to execute
 # Students see real bash output instantly!
 ```
@@ -90,7 +90,7 @@ docker run -p 8888:8888 kimn20
 
 ### 🛠️ For Instructors: Edit & Rebuild
 
-1. Edit `linux-commands-tutorial.qmd` with your changes
+1. Edit `intro_to_linux.qmd` with your changes
 2. Rebuild the container: `docker build --platform linux/amd64 -t kimn20 docker/`
 3. Files will automatically render and be ready to serve
 

@@ -20,11 +20,11 @@ RUN pip3 install --no-cache-dir pyyaml jupyter nbformat jupyterlab
 WORKDIR /workspace
 
 # Copy the presentation file
-COPY linux-commands-tutorial.qmd /workspace/
+COPY intro_to_linux.qmd /workspace/
 
 # Render both HTML presentation and Jupyter notebook
-RUN quarto render linux-commands-tutorial.qmd && \
-    quarto render linux-commands-tutorial.qmd --to ipynb
+RUN quarto render intro_to_linux.qmd && \
+    quarto render intro_to_linux.qmd --to ipynb
 
 # Expose ports
 EXPOSE 8000 8888

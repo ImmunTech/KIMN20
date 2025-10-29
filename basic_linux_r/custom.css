@@ -1,13 +1,13 @@
 .reveal h1 {
-  font-size: 1.0em !important;
+  font-size: 1.1em !important;
 }
 
 .reveal h2 {
-  font-size: 0.95em !important;
+  font-size: 0.80em !important;
 }
 
 .reveal h3 {
-  font-size: 0.9em !important;
+  font-size: 0.70em !important;
 }
 
 .reveal p, .reveal li {
@@ -34,4 +34,21 @@
 
 .reveal code {
   font-size: 0.75em !important;
+}
+
+/* Logo styling */
+.reveal .slide-logo {
+  max-height: 120px !important;
+  height: auto !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 10 !important;
+}
+
+/* Background image */
+.reveal-viewport {
+  background-image: url('assets/cover.png') !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
 }

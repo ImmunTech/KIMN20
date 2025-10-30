@@ -1,0 +1,145 @@
+---
+title: "Omics - Analysis of large-scale biomolecular datasets"
+subtitle: |
+  Introduction to Linux
+  (KIMN20 - LTH)
+author: 
+  - "Daniel Nilsson"
+  - "Massimiliano Volpe"
+date: today
+format: 
+  revealjs:
+    width: 1050
+    height: 700
+    margin: 0.1
+    center: false
+    self-contained: true
+    css: custom.css
+    logo: assets/lth-logo.png
+  ipynb: default
+execute:
+  enabled: false
+---
+
+## Introduction to Linux
+
+### Course date: 04 November 2025
+### Last modified: {{< meta date >}}
+
+## Welcome to Linux Commands! 🐧
+
+This presentation will teach you the fundamental Linux commands you'll need to navigate and work with the command line.
+
+### What we'll cover:
+- Navigation commands (pwd, ls, cd, paths)
+- File operations (mkdir, touch, cp, mv, rm, tar)
+- Text processing (cat, grep, less, head, tail, nano)
+- System information (whoami, uname, df, top)
+- Package management
+- Getting help and shortcuts
+
+---
+
+## What Linux is?
+
+### Linux is an Operating System
+
+Linux is a **free and open-source operating system** that powers everything from smartphones to supercomputers.
+
+### Key Characteristics:
+- **Kernel**: The core of the OS that manages hardware and system resources
+- **Distributions**: Different "flavors" of Linux (Ubuntu, CentOS, Fedora, etc.)
+- **Free Software**: No licensing fees, source code available to everyone
+- **Community-Driven**: Developed collaboratively by volunteers worldwide
+
+### Why "Linux" vs "GNU/Linux"?
+- Linux refers specifically to the kernel (created by Linus Torvalds in 1991)
+- GNU/Linux refers to the complete operating system including GNU tools
+- In practice, people often just say "Linux"
+
+---
+
+## Why Linux?
+
+### Perfect for Scientific Computing
+
+Linux excels in research environments because:
+
+- **Powerful Command-Line Interface**: Essential for bioinformatics pipelines and automation
+- **Multi-User Systems**: Multiple researchers can work simultaneously on shared servers
+- **Package Management**: Thousands of scientific tools available (R, Python, bioinformatics software)
+- **Stability & Reliability**: Runs 24/7 without crashes, critical for long-running analyses
+- **Resource Efficiency**: Optimized for high-performance computing clusters
+
+### Cost-Effective Solution
+
+- **Free**: No licensing costs for software or operating system
+- **Hardware Requirements**: Runs efficiently on modest hardware
+- **Scalability**: From Raspberry Pi to supercomputing clusters
+
+### Research Workflow Benefits
+
+- **Reproducibility**: Scripts and commands can be saved and shared
+- **Automation**: Complex analysis pipelines can be automated
+- **Version Control**: Integration with Git for tracking changes
+- **Remote Access**: SSH access to lab servers from anywhere
+
+### Industry Standard
+
+Linux dominates scientific computing:
+- 100% of the world's top 500 supercomputers run Linux
+- Most bioinformatics tools are developed for Linux first
+- Cloud computing platforms (AWS, Google Cloud) use Linux
+
+---
+
+### Variable Naming Conventions
+
+Rules for valid variable names in R:
+
+#### Valid Names:
+- Start with a letter or dot (not followed by number)
+- Contain letters, numbers, dots, or underscores
+- Examples: `my_var`, `myVariable`, `.hidden`, `var2`
+
+#### Invalid Names:
+- Start with number: `2variable` ❌
+- Contain spaces: `my variable` ❌
+- Use hyphens: `my-variable` ❌
+- Start with dot + number: `.2way` ❌
+
+#### Reserved Words (cannot use):
+- `if`, `else`, `repeat`, `while`, `function`
+- `for`, `in`, `next`, `break`
+- `TRUE`, `FALSE`, `NULL`, `Inf`, `NaN`
+- `NA`, `NA_integer_`, `NA_real_`, `NA_complex_`, `NA_character_`
+- Built-in functions: `c`, `q`, `t`, `C`, `D`, `I`
+- Avoid using: `T`, `F` (short for TRUE/FALSE)
+
+---
+
+### Variable Naming Style
+
+Best practices for readable, maintainable code:
+
+#### Make Names Informative:
+- Use descriptive names: `patient_ages` instead of `x`
+- Avoid cryptic abbreviations: `genotypes` instead of `fsjht45jkhsdf4`
+
+#### Choose a Consistent Convention:
+- **snake_case**: `my_variable`, `patient_data`
+- **camelCase**: `myVariable`, `patientData`
+- **dot.case**: `my.variable`, `patient.data`
+- Pick one and stick with it throughout your code
+
+#### Keep Names Reasonable Length:
+- Short enough: `tmp` for temporary variables
+- Long enough: `gene_expression_matrix` not `g_e_m`
+- Avoid: `my.variable.2` → use `my.variable2`
+
+#### Common Conventions:
+- `i`, `j`, `k`: Loop counters
+- `tmp`: Temporary variables
+- `df`: Data frames
+- `n`: Counts or lengths
+- `idx`: Indices

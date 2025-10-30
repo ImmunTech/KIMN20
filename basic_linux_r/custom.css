@@ -10,8 +10,12 @@
   font-size: 0.70em !important;
 }
 
+.reveal h4 {
+  font-size: 0.60em !important;
+}
+
 .reveal p, .reveal li {
-  font-size: 0.75em !important;
+  font-size: 0.60em !important;
   line-height: 1.2 !important;
 }
 

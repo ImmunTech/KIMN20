@@ -1,6 +1,7 @@
 ---
-title: "Omics - Analysis of large-scale biomolecular datasets"
-subtitle: "KIMN20 - LTH"
+title: "Omics - Analysis of large-scale biomolecular datasets Introduction to Linux"
+subtitle: |
+  KIMN20 - LTH
 author: 
   - "Daniel Nilsson"
   - "Massimiliano Volpe"
@@ -35,6 +36,38 @@ This presentation will teach you the fundamental Linux commands you'll need to n
 - System information (whoami, uname, df, top)
 - Package management
 - Getting help and shortcuts
+
+---
+
+## What Linux is?
+
+### Linux is an Operating System
+
+Linux is a **free and open-source operating system** that powers everything from smartphones to supercomputers.
+
+### Key Characteristics:
+- **Kernel**: The core of the OS that manages hardware and system resources
+- **Distributions**: Different "flavors" of Linux (Ubuntu, CentOS, Fedora, etc.)
+- **Free Software**: No licensing fees, source code available to everyone
+- **Community-Driven**: Developed collaboratively by volunteers worldwide
+
+### Why "Linux" vs "GNU/Linux"?
+- Linux refers specifically to the kernel (created by Linus Torvalds in 1991)
+- GNU/Linux refers to the complete operating system including GNU tools
+- In practice, people often just say "Linux"
+
+---
+
+## Why Linux?
+
+### Essential for Bioinformatics & Research
+
+- **Command-Line Power**: Perfect for automation, pipelines, and complex workflows
+- **Multi-User Systems**: Multiple researchers can work simultaneously on shared servers
+- **Scientific Software**: Thousands of bioinformatics tools (R, Python, sequencing software)
+- **Stability & Reliability**: Runs 24/7 without crashes - critical for long analyses
+- **Free & Open-Source**: No licensing costs, complete source code access
+- **Industry Standard**: Powers 100% of top 500 supercomputers and cloud platforms
 
 ---
 
@@ -373,25 +406,6 @@ tldr ls
 
 ---
 
-## Next Steps
-
-### What to Learn Next
-
-- File permissions (`chmod`, `chown`)
-- Process management (`ps`, `kill`)
-- Advanced text editors (`vim`, `emacs`)
-- Shell scripting basics
-- Networking commands (`ping`, `curl`, `ssh`)
-- User management (`useradd`, `passwd`)
-
-### Resources
-
-- [Linux Command Line Basics](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
-- [ExplainShell](https://explainshell.com/) - Explains shell commands
-- [tldr](https://tldr.sh/) - Simplified command documentation
-
----
-
 ## Quiz Time! 🧠
 
 ### Question 1
@@ -416,6 +430,25 @@ What's the safest way to delete a file?
 
 ### Quiz Time! 🧠
 *Answers: 1-B, 2-B, 3-C*
+
+---
+
+## Next Steps
+
+### What to Learn Next
+
+- File permissions (`chmod`, `chown`)
+- Process management (`ps`, `kill`)
+- Advanced text editors (`vim`, `emacs`)
+- Shell scripting basics
+- Networking commands (`ping`, `curl`, `ssh`)
+- User management (`useradd`, `passwd`)
+
+### Resources
+
+- [Linux Command Line Basics](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview)
+- [ExplainShell](https://explainshell.com/) - Explains shell commands
+- [tldr](https://tldr.sh/) - Simplified command documentation
 
 ---
 

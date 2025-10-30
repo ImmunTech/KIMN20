@@ -16,7 +16,7 @@ format:
     css: custom.css
     logo: assets/lth-logo.png
     code-fold: false
-  ipynb: default
+  # ipynb: default  # Commented out to avoid generating .ipynb file
 engine: knitr
 execute:
   enabled: true
@@ -98,7 +98,7 @@ This presentation will teach you the fundamentals of R programming for data anal
 - **Command line**: Type `R` in terminal
 - **RStudio**: Download from https://posit.co/download/rstudio-desktop/
 - **Web-based**: Use RStudio Cloud or Google Colab with R kernel
-- **RStudio Server**:[https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
+- **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
 
 ### Your First R Commands
 
@@ -202,6 +202,8 @@ remove.packages("package_name")
 - **Quality Assurance**: Rigorous review process ensures high-quality, well-documented packages
 - **Integrated Workflows**: Complete analysis pipelines from raw data to publication
 - **Active Community**: Regular updates and new package releases
+
+<a href="https://bioconductor.org/"><img src="assets/bioconductor_logo_cmyk.jpg" alt="Bioconductor Logo" width="300" height="auto"></a>
 
 ---
 
@@ -333,6 +335,23 @@ Best practices for readable, maintainable code:
 
 ## Data Types and Classes
 
+R has several basic data types (atomic types) and classes that determine how data is stored and manipulated.
+
+### Basic Data Types in R:
+
+- **Numeric (double)**: Decimal numbers (e.g., 3.14, -2.5)
+- **Integer**: Whole numbers (e.g., 42, -7) - marked with `L` suffix
+- **Character**: Text strings (e.g., "Hello", 'World')
+- **Logical**: Boolean values (TRUE/FALSE)
+- **Complex**: Complex numbers (e.g., 1+2i)
+- **Raw**: Raw bytes
+
+### Classes vs Types:
+- **Type**: How data is stored in memory (low-level)
+- **Class**: How objects behave (high-level, can be customized)
+
+---
+
 ### Basic Data Types
 
 ```{r eval=TRUE}
@@ -441,7 +460,7 @@ strsplit("Hello World", " ")
 
 ---
 
-## Complex Data Structures
+## Data Structures
 
 R provides powerful data structures for organizing and manipulating data efficiently.
 
@@ -923,8 +942,9 @@ How do you access the first element of a vector named `my_vec`?
 
 - [R for Data Science](https://r4ds.had.co.nz/) - Free online book
 - [RStudio Education](https://education.rstudio.com/) - Learning resources
-- [CRAN Task Views](https://cran.r-project.org/web/views/) - Package collections
 - [R Documentation](https://www.rdocumentation.org/) - Function reference
+- [CRAN Task Views](https://cran.r-project.org/web/views/) - Package collections
+- [Bioconductor](https://bioconductor.org/) - Bioinformatics packages
 
 ---
 
@@ -947,7 +967,7 @@ Feel free to ask your instructor or classmates!
 
 ## Practice Time! 💻
 
-### Exercise 1: Variables and Typesß
+### Exercise 1: Variables and Types
 
 1. Create variables for your name, age, and height
 2. Check their data types with `class()`

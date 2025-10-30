@@ -15,7 +15,7 @@ format:
     self-contained: true
     css: custom.css
     logo: assets/lth-logo.png
-  ipynb: default
+  # ipynb: default  # Commented out to avoid generating .ipynb file
 execute:
   enabled: false
 ---
@@ -347,7 +347,7 @@ brew uninstall package_name
 
 ---
 
-### Wildcards
+## Wildcards
 
 Wildcards are special characters that allow you to match multiple files or directories based on patterns, making it easier to work with groups of files.
 

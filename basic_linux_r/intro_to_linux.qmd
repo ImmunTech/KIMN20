@@ -5,7 +5,7 @@ subtitle: |
 author: 
   - "Daniel Nilsson"
   - "Massimiliano Volpe"
-date: today
+date: 04 November 2025
 format: 
   revealjs:
     width: 1050
@@ -23,7 +23,7 @@ execute:
 ## Introduction to Linux
 
 ### Course date: 04 November 2025
-### Last modified: {{< meta date >}}
+### Last modified: 03 November 2025
 
 ## Welcome to Linux Commands! 🐧
 
@@ -470,6 +470,17 @@ Feel free to ask your instructor or classmates!
 ---
 
 ## Practice Time! 💻
+
+[Linux Lab on Canvas](https://canvas.education.lu.se/courses/37606/files/7018849?module_item_id=1652958&fd_cookie_set=1)
+
+**Use Git Bash:**
+Git Bash is a lightweight terminal for Windows bundled with Git for Windows. It provides a Bash shell and common GNU command-line tools (ssh, grep, ls, etc.), allowing you to run typical Unix/Linux commands and shell scripts on Windows. Use it to interact with Git repositories and follow Linux command-line tutorials when you don't have a native Linux/macOS terminal.
+
+<a href="https://about.gitlab.com/blog/git-command-line-on-windows-with-git-bash/"><img src="assets/git-bash.png" alt="Git Bash" width="300" height="auto"></a>
+
+---
+
+## More Exercises... 💻
 
 ### Exercise 1: Navigation
 

@@ -5,7 +5,7 @@ subtitle: |
 author: 
   - "Daniel Nilsson"
   - "Massimiliano Volpe"
-date: today
+date: 04 November 2025
 format: 
   revealjs:
     width: 1050
@@ -27,7 +27,7 @@ preview: false
 ## Introduction to R
 
 ### Course date: 04 November 2025
-### Last modified: {{< meta date >}}
+### Last modified: 03 November 2025
 
 ## Welcome to R Programming! 🐧
 
@@ -152,6 +152,21 @@ vignette()
 ---
 
 ## Working with Packages
+Packages are organised in repositories. The main repositories are:
+
+::: columns
+
+::: column
+- [CRAN](https://cran.r-project.org/)
+- [R-Forge](https://r-forge.r-project.org/)
+:::
+
+::: column
+- [Bioconductor](https://bioconductor.org/)
+- [GitHub](https://github.com/)
+:::
+
+:::
 
 ### Installing Packages
 
@@ -966,6 +981,17 @@ Feel free to ask your instructor or classmates!
 ---
 
 ## Practice Time! 💻
+
+[R Lab on Canvas](https://canvas.education.lu.se/courses/37606/files/7018848?module_item_id=1652957&fd_cookie_set=1)
+
+**Use RStudio Server:**
+[https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
+
+<a href="https://about.gitlab.com/blog/git-command-line-on-windows-with-git-bash/"><img src="assets/rstudio_server.png" alt="Git Bash" width="600" height="auto"></a>
+
+---
+
+## More Exercises... 💻
 
 ### Exercise 1: Variables and Types
 

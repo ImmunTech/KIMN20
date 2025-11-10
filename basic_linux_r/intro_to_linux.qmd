@@ -23,7 +23,12 @@ execute:
 ## Introduction to Linux
 
 ### Course date: 04 November 2025
-### Last modified: 03 November 2025
+### Last modified: 04 November 2025
+- **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
+
+### Teachers:
+- [Daniel Nilsson](https://portal.research.lu.se/sv/persons/daniel-nilsson-3/)
+- [Massimiliano Volpe](https://portal.research.lu.se/en/persons/massimiliano-volpe/)
 
 ## Welcome to Linux Commands! 🐧
 
@@ -347,6 +352,31 @@ brew uninstall package_name
 
 ---
 
+## Tab Completion
+
+Tab completion helps you type faster by automatically completing commands, file names, and paths.
+
+### How to Use
+
+- Press `Tab` once: Auto-completes if there's a unique match
+- Press `Tab` twice: Shows all possible completions
+
+### Examples
+
+```bash
+ls<Tab>        # Completes command
+cd Doc<Tab>    # Completes directory name
+cp file<Tab>   # Shows files starting with 'file'
+```
+
+### Why It's Useful
+
+- Avoids typos
+- Speeds up typing
+- Helps discover available files/commands
+
+---
+
 ## Wildcards
 
 Wildcards are special characters that allow you to match multiple files or directories based on patterns, making it easier to work with groups of files.
@@ -473,10 +503,15 @@ Feel free to ask your instructor or classmates!
 
 [Linux Lab on Canvas](https://canvas.education.lu.se/courses/37606/files/7018849?module_item_id=1652958&fd_cookie_set=1)
 
-**Use Git Bash:**
+- **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
+
+A web-based integrated development environment (IDE) for the R programming language that runs on a remote Linux server and is accessed via a web browser.
+
+- **Git Bash:**
+
 Git Bash is a lightweight terminal for Windows bundled with Git for Windows. It provides a Bash shell and common GNU command-line tools (ssh, grep, ls, etc.), allowing you to run typical Unix/Linux commands and shell scripts on Windows. Use it to interact with Git repositories and follow Linux command-line tutorials when you don't have a native Linux/macOS terminal.
 
-<a href="https://about.gitlab.com/blog/git-command-line-on-windows-with-git-bash/"><img src="assets/git-bash.png" alt="Git Bash" width="300" height="auto"></a>
+<a href="https://about.gitlab.com/blog/git-command-line-on-windows-with-git-bash/"><img src="assets/git-bash.png" alt="Git Bash" width="100" height="auto"></a>
 
 ---
 

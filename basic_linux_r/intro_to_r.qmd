@@ -28,6 +28,11 @@ preview: false
 
 ### Course date: 04 November 2025
 ### Last modified: 03 November 2025
+- **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
+
+### Teachers:
+- [Daniel Nilsson](https://portal.research.lu.se/sv/persons/daniel-nilsson-3/)
+- [Massimiliano Volpe](https://portal.research.lu.se/en/persons/massimiliano-volpe/)
 
 ## Welcome to R Programming! 🐧
 
@@ -1032,3 +1037,22 @@ scores_df <- data.frame(
 
 mean(scores_df$score)
 ```
+
+---
+
+## Positron
+
+**Positron** is Posit's next-generation IDE for data science, supporting both R and Python.
+
+### Key Features:
+- **Multi-Language**: Native R and Python support
+- **Modern Design**: Clean, fast interface
+- **Performance**: Optimized for large datasets
+
+### Why Try Positron?
+- Future-proof for modern data science
+- Free and open-source
+
+<a href="https://positron.posit.co/"><img src="assets/positron.png" alt="Positron IDE" width="400" height="auto"></a>
+
+Download: [positron.posit.co](https://positron.posit.co/)

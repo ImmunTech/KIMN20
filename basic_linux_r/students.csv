@@ -1,0 +1,4 @@
+"name","age","grade","passed"
+"Alice",20,"A",TRUE
+"Bob",21,"B",TRUE
+"Carol",19,"A",FALSE

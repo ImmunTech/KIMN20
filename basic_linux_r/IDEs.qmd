@@ -5,7 +5,7 @@ subtitle: |
 author: 
   - "Daniel Nilsson"
   - "Massimiliano Volpe"
-date: 04 November 2025
+date: 03 November 2026
 format: 
   revealjs:
     width: 1050
@@ -22,8 +22,8 @@ execute:
 
 ## Integrated Development Environment (IDE)
 
-### Course date: 04 November 2025
-### Last modified: 10 November 2025
+### Course date: 03 November 2026
+### Last modified: 26 October 2026
 
 ### Teachers:
 - [Daniel Nilsson](https://portal.research.lu.se/sv/persons/daniel-nilsson-3/)

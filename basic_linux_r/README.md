@@ -69,4 +69,8 @@ Then open http://localhost:8000 in a browser and pick a deck.
 
 **R** — Language basics and help, packages, variables & data types, data structures (vectors, matrices, lists, data frames), reading data, writing functions, Bioconductor
 
-**IDEs** — Overview of environments for R work (VS Code, Positron, RStudio, Cursor, Firebase Studio)
+**IDEs** — Overview of environments for R work (VS Code, Positron, RStudio, Cursor; Firebase Studio slide hidden as outdated)
+
+## Versioning per course year
+
+The 2025 edition of this material is preserved as git tag `KIMN20-2025` (on `main`). Each course year continues in the same tree; tag `KIMN20-<year>` after the course is over — `git checkout KIMN20-<year>` restores that edition, `git diff KIMN20-<year>..main` shows what changed since.

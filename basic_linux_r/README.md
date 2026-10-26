@@ -1,102 +1,72 @@
 # Basic Linux and R
-Introduction to Linux and R commands.
 
-## Linux Commands Interactive Presentation
+Introductory lesson decks for KIMN20 covering Linux commands, R basics, and IDEs.
 
-An interactive Quarto presentation for teaching basic Linux commands to students.
+All teaching material is delivered as **self-contained HTML presentations** rendered from Quarto (`.qmd`) source files (reveal.js). The legacy Jupyter notebooks in `tests/` are no longer used.
 
-### � Project Structure
+## Presentations
 
-```
-basic_linux_r/
-├── README.md              # This file - setup and usage guide
-├── custom.css             # Custom styling for the presentation
-├── intro_to_linux.qmd     # Source file (Quarto format)
-├── intro_to_linux.html    # Rendered presentation (reveal.js slides)
-├── intro_to_linux.ipynb   # Jupyter notebook for live coding
-├── docker/
-│   └── Dockerfile         # Docker container definition
-└── docs/
-    ├── LIVE_READY.md      # Live teaching preparation guide
-    ├── LIVE_TEACHING.md   # Live session instructions
-    ├── QUICKSTART.md      # Quick start guide
-    └── SETUP_COMPLETE.md  # Setup verification checklist
-```
+| Deck | Source | Rendered output |
+| --- | --- | --- |
+| Introduction to Linux | `intro_to_linux.qmd` | `intro_to_linux.html` |
+| Introduction to R | `intro_to_r.qmd` | `intro_to_r.html` |
+| IDEs | `IDEs.qmd` | `IDEs.html` |
 
-### �🚀 Quick Start
+## Quick start
 
-**Option 1: View the HTML presentation locally**
 ```bash
+# View a presentation locally
 open intro_to_linux.html
 ```
 
-**Option 2: Live Interactive Coding with Docker**
+Navigate slides with the arrow keys.
 
-For teaching and live execution:
+## For instructors: edit & re-render
+
+1. Edit the `.qmd` source file (e.g. `intro_to_linux.qmd`)
+2. Re-render with Quarto:
+   ```bash
+   quarto render intro_to_linux.qmd
+   ```
+3. Open the resulting `.html` — it is self-contained and ready to present.
+
+## Project structure
+
+```
+basic_linux_r/
+├── README.md                # This file
+├── custom.css               # Shared styling for the presentations
+├── intro_to_linux.qmd       # Source: Linux intro deck
+├── intro_to_linux.html      # Rendered: Linux intro deck
+├── intro_to_r.qmd           # Source: R intro deck
+├── intro_to_r.html          # Rendered: R intro deck
+├── IDEs.qmd                 # Source: IDE deck
+├── IDEs.html                # Rendered: IDE deck
+├── assets/                  # Images, logos, data files used by the decks
+├── chalkboard/              # Bonus chalkboard-format tutorial (Linux commands)
+├── docker/
+│   └── Dockerfile           # Optional container for serving the HTML decks
+└── tests/                   # Legacy notebooks and work-in-progress files (not used in teaching)
+```
+
+## Optional: serve via Docker
+
+The container starts a static web server with the rendered HTML:
+
 ```bash
 # Build the container (one time)
 docker build --platform linux/amd64 -t kimn20 docker/
 
-# Run with a different port if 8888 is busy
-docker run -p 8888:8888 kimn20
+# Run it
+docker run -p 8000:8000 kimn20
 ```
 
-Then open in your browser:
-- **JupyterLab (interactive)**: http://localhost:8889
-- Open `intro_to_linux.ipynb` in JupyterLab
-- **Execute cells with Shift+Enter** to run bash commands live!
+Then open http://localhost:8000 in a browser and pick a deck.
 
-### 📚 What's Included
+## Topics covered
 
-- `intro_to_linux.qmd` - Source file (Quarto format)
-- `intro_to_linux.html` - Rendered presentation (reveal.js slides)
-- `intro_to_linux.ipynb` - Jupyter notebook for live coding
-- `Dockerfile` - Container with all dependencies
-- `custom.css` - Presentation styling
-- `docs/` - Teaching guides and setup documentation
+**Linux** — Navigation (`pwd`, `ls`, `cd`), file operations (`mkdir`, `touch`, `cp`, `mv`, `rm`), text processing (`cat`, `grep`), system info (`whoami`, `uname`, `df`), package management (`apt`, `yum`, `brew`), shortcuts & wildcards
 
-### 📖 Topics Covered
+**R** — Language basics and help, packages, variables & data types, data structures (vectors, matrices, lists, data frames), reading data, writing functions, Bioconductor
 
-✅ Navigation (pwd, ls, cd)  
-✅ File operations (mkdir, touch, cp, mv, rm)  
-✅ Text processing (cat, grep)  
-✅ System info (whoami, uname, df)  
-✅ Package management (apt, yum, brew)  
-✅ Useful shortcuts & wildcards  
-
-### 💡 How to Use for Teaching
-
-**Static presentation (no execution needed):**
-```bash
-open intro_to_linux.html
-# Use arrow keys to navigate slides
-# Show command examples to students
-```
-
-**Live coding with students:**
-```bash
-docker run -p 8888:8888 kimn20
-# Open http://localhost:8888 in browser
-# Open intro_to_linux.ipynb
-# Click any cell and press Shift+Enter to execute
-# Students see real bash output instantly!
-```
-
-**Teaching Resources:**
-- Check `docs/LIVE_READY.md` for preparation steps
-- Follow `docs/LIVE_TEACHING.md` during live sessions
-- Use `docs/QUICKSTART.md` for rapid setup
-- Verify setup with `docs/SETUP_COMPLETE.md`
-
-### 🛠️ For Instructors: Edit & Rebuild
-
-1. Edit `intro_to_linux.qmd` with your changes
-2. Rebuild the container: `docker build --platform linux/amd64 -t kimn20 docker/`
-3. Files will automatically render and be ready to serve
-
-### ✨ Why This Approach
-
-- **No installation needed for students** - Just Docker
-- **Works on Windows, macOS, Linux** - Same container
-- **Two ways to present** - Static HTML for lectures or Jupyter for live coding
-- **Clean and maintainable** - Simple Quarto + Docker setup
+**IDEs** — Overview of environments for R work (VS Code, Positron, RStudio, Cursor, Firebase Studio)

@@ -4,6 +4,9 @@
 **/.DS_Store
 **/._.DS_Store
 
+# Agent session state (pi/paseo task outputs)
+.pi/
+
 # History files
 .Rhistory
 .Rapp.history

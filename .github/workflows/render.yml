@@ -1,0 +1,42 @@
+name: Render decks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-cli/quarto-action@V4
+        with:
+          set-R-version: "4.4"
+
+      - name: Install R packages
+        run: Rscript -e 'install.packages(c("tidyverse", "readxl"), Ncpus = 4)'
+
+      - name: Render all decks
+        run: |
+          quarto render basic_linux_r/intro_to_linux.qmd
+          quarto render basic_linux_r/intro_to_r.qmd
+          quarto render basic_linux_r/IDEs.qmd
+
+      - name: Verify rendered output
+        run: |
+          for f in intro_to_linux.html intro_to_r.html IDEs.html; do
+            test -s "basic_linux_r/$f" || { echo "missing or empty: $f"; exit 1; }
+          done
+          echo "All decks rendered."
+
+      - name: Upload rendered decks
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-decks
+          path: |
+            basic_linux_r/intro_to_linux.html
+            basic_linux_r/intro_to_r.html
+            basic_linux_r/IDEs.html

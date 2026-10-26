@@ -126,7 +126,9 @@ Download: [cursor.sh](https://cursor.sh/)
 
 ---
 
-## Firebase Studio
+## Firebase Studio {.invisible}
+
+<!-- Hidden (2026): Firebase Studio is outdated for this course. Slide kept for reference; end the tour at Cursor. Remove or re-include by dropping the {. .invisible} class. -->
 
 **Firebase Studio** is a web-based visual tool for Firebase apps, powered by Google Gemini.
 

@@ -23,7 +23,7 @@ execute:
 ## Integrated Development Environment (IDE)
 
 ### Course date: 03 November 2026
-### Last modified: 26 October 2026
+### Last modified: 02 November 2026
 
 ### Teachers:
 - [Daniel Nilsson](https://portal.research.lu.se/sv/persons/daniel-nilsson-3/)

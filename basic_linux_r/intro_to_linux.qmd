@@ -23,7 +23,7 @@ execute:
 ## Introduction to Linux
 
 ### Course date: 03 November 2026
-### Last modified: 26 October 2026
+### Last modified: 02 November 2026
 - **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
 
 ### Teachers:

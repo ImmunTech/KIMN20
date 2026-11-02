@@ -199,12 +199,7 @@ require(tidyverse)
 ### Package Management
 
 ```{r eval=TRUE}
-# See which packages are currently attached
-(.packages())
-```
-
-```{r eval=FALSE}
-# Full session details: R version, OS and every loaded package
+# See loaded packages
 sessionInfo()
 ```
 

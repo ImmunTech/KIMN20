@@ -34,7 +34,7 @@ preview: false
 - [Daniel Nilsson](https://portal.research.lu.se/sv/persons/daniel-nilsson-3/)
 - [Massimiliano Volpe](https://portal.research.lu.se/en/persons/massimiliano-volpe/)
 
-## Welcome to R Programming! 🐧
+## Welcome to R Programming! 📊
 
 This presentation will teach you the fundamentals of R programming for data analysis.
 
@@ -83,7 +83,7 @@ This presentation will teach you the fundamentals of R programming for data anal
 
 ### Specialized Ecosystem:
 - **Bioconductor**: 2,000+ packages for genomics, proteomics, sequencing
-- **CRAN**: 18,000+ general-purpose packages
+- **CRAN**: 25,000+ general-purpose packages
 - Complete analysis pipelines
 
 ### Visualization Excellence:
@@ -101,7 +101,7 @@ This presentation will teach you the fundamentals of R programming for data anal
 ### Opening R/RStudio
 
 - **Command line**: Type `R` in terminal
-- **RStudio**: Download from https://posit.co/download/rstudio-desktop/
+- **RStudio**: Download from [docs.posit.co/ide/user/download.html](https://docs.posit.co/ide/user/download.html)
 - **Web-based**: Use RStudio Cloud or Google Colab with R kernel
 - **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
 
@@ -199,7 +199,12 @@ require(tidyverse)
 ### Package Management
 
 ```{r eval=TRUE}
-# See loaded packages
+# See which packages are currently attached
+(.packages())
+```
+
+```{r eval=FALSE}
+# Full session details: R version, OS and every loaded package
 sessionInfo()
 ```
 
@@ -314,8 +319,13 @@ Rules for valid variable names in R:
 - `for`, `in`, `next`, `break`
 - `TRUE`, `FALSE`, `NULL`, `Inf`, `NaN`
 - `NA`, `NA_integer_`, `NA_real_`, `NA_complex_`, `NA_character_`
-- Built-in functions: `c`, `q`, `t`, `C`, `D`, `I`
-- Avoid using: `T`, `F` (short for TRUE/FALSE)
+
+#### Allowed, but best avoided:
+These are ordinary functions, not reserved words, so R lets you assign to
+them -- but doing so hides the original and causes confusing bugs.
+
+- `c`, `q`, `t`, `C`, `D`, `I`
+- `T`, `F` (short for `TRUE`/`FALSE`)
 
 ---
 
@@ -422,7 +432,7 @@ as.character(3.14)
 as.numeric("42.5")
 
 # Numeric to integer
-as.integer(3.9)
+as.integer(3.9)   # Truncates toward zero: gives 3, it does not round
 
 # Logical to numeric
 as.numeric(TRUE)  # Returns 1
@@ -433,6 +443,11 @@ as.numeric(FALSE) # Returns 0
 
 ### Common Conversions
 
+A **factor** stores categorical data. R keeps the distinct values as *levels*
+and records each entry as one of them, so a factor is a set of labelled
+categories rather than plain text. `as.character()` turns the labels back
+into ordinary strings.
+
 ```{r eval=TRUE}
 # String to logical
 as.logical("TRUE")
@@ -440,7 +455,9 @@ as.logical("false")
 
 # Factor to character
 factor_var <- factor(c("A", "B", "A"))
-as.character(factor_var)
+factor_var               # Note the "Levels:" line
+levels(factor_var)       # The categories R recorded
+as.character(factor_var) # Back to plain text
 ```
 
 ---
@@ -963,7 +980,7 @@ How do you access the first element of a vector named `my_vec`?
 
 ### Resources
 
-- [R for Data Science](https://r4ds.had.co.nz/) - Free online book
+- [R for Data Science](https://r4ds.hadley.nz/) - Free online book (2nd edition)
 - [RStudio Education](https://education.rstudio.com/) - Learning resources
 - [R Documentation](https://www.rdocumentation.org/) - Function reference
 - [CRAN Task Views](https://cran.r-project.org/web/views/) - Package collections
@@ -984,7 +1001,7 @@ You've completed the basic R programming tutorial!
 ### Questions?
 Feel free to ask your instructor or classmates!
 
-🐧 Happy R programming! 🐧
+📊 Happy R programming! 📊
 
 ---
 
@@ -995,7 +1012,7 @@ Feel free to ask your instructor or classmates!
 **Use RStudio Server:**
 [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
 
-<a href="https://about.gitlab.com/blog/git-command-line-on-windows-with-git-bash/"><img src="assets/rstudio_server.png" alt="Git Bash" width="600" height="auto"></a>
+<a href="https://130.235.8.214/rstudio"><img src="assets/rstudio_server.png" alt="RStudio Server" width="600" height="auto"></a>
 
 ---
 
@@ -1018,7 +1035,7 @@ class(age)
 class(height)
 
 as.character(age)
-as.integer(height)
+as.integer(height)  # 1.75 becomes 1 (truncated, not rounded)
 ```
 
 ---

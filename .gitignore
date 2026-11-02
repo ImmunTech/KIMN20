@@ -56,3 +56,6 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Render artifact from intro_to_r.qmd (write.csv example)
+basic_linux_r/students.csv

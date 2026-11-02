@@ -564,3 +564,7 @@ cat notes.txt
 cp notes.txt backup.txt
 ls -la
 ```
+
+**Note:** `touch` is optional here. The `>` redirection in step 2 creates
+`notes.txt` by itself if it doesn't exist, so step 2 alone would be enough.
+It is kept so that each command matches one numbered step.

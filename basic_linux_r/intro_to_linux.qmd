@@ -121,6 +121,7 @@ Lists files and directories in the current directory.
 ls
 ls -l              # Long listing format
 ls -a              # Show hidden files
+ls -la             # Flags can be combined: long listing, including hidden files
 ```
 
 ### cd - Change Directory
@@ -147,8 +148,8 @@ cd -               # Go to previous directory
 cd /home/user/documents
 
 # Relative path
-cd documents       # If you're in /home/user/
-cd ../sibling      # Go to sibling directory
+cd documents       # If you're in /home/user/, takes you to /home/user/documents
+cd ../data         # Go up one level, then into data: /home/user/data
 ```
 
 ---
@@ -215,6 +216,15 @@ tar -xzvf archive.tar.gz
 # List archive contents
 tar -tzf archive.tar.gz
 ```
+
+**What the flags mean:**
+
+- `-c` - Create a new archive
+- `-x` - Extract files from an archive
+- `-t` - List the contents without extracting
+- `-z` - Compress/decompress with gzip (the `.gz` part)
+- `-f` - The next argument is the archive filename
+- `-v` - Verbose: print each file as it is processed
 
 ---
 
@@ -390,6 +400,7 @@ Wildcards are special characters that allow you to match multiple files or direc
 ls *.txt                 # List all files ending with .txt
 cp file?.txt backup/     # Copy files like file1.txt, file2.txt to backup/
 ls linux_practice/*.txt  # List all .txt files in linux_practice
+ls sample_[abc].txt      # List sample_a.txt, sample_b.txt, sample_c.txt
 ```
 
 ---
@@ -522,13 +533,14 @@ Git Bash is a lightweight terminal for Windows bundled with Git for Windows. It 
 
 ### Exercise 1: Navigation
 
-1. Open your terminal
+1. Open your terminal (`Ctrl + Alt + T` on Linux)
 2. Check your current directory with `pwd`
 3. List the contents with `ls`
 4. Create a new directory called `linux_practice`
 5. Change into that directory
 
 ```bash
+# Open a terminal first: Ctrl + Alt + T  (Linux)
 pwd
 ls -la
 mkdir -p linux_practice
@@ -546,6 +558,7 @@ cd linux_practice
 5. List the directory contents
 
 ```bash
+touch notes.txt
 echo "Hello Linux" > notes.txt
 cat notes.txt
 cp notes.txt backup.txt

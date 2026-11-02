@@ -1204,7 +1204,8 @@ Massimiliano Volpe
 <p>Lists files and directories in the current directory.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href aria-label="1"></a><span class="fu">ls</span></span>
 <span id="cb4-2"><a href aria-label="2"></a><span class="fu">ls</span> <span class="at">-l</span>              <span class="co"># Long listing format</span></span>
-<span id="cb4-3"><a href aria-label="3"></a><span class="fu">ls</span> <span class="at">-a</span>              <span class="co"># Show hidden files</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href aria-label="3"></a><span class="fu">ls</span> <span class="at">-a</span>              <span class="co"># Show hidden files</span></span>
+<span id="cb4-4"><a href aria-label="4"></a><span class="fu">ls</span> <span class="at">-la</span>             <span class="co"># Flags can be combined: long listing, including hidden files</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <h3 id="cd---change-directory">cd - Change Directory</h3>
 <p>Changes your current working directory.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href aria-label="1"></a><span class="bu">cd</span> directory_name  <span class="co"># Relative path</span></span>
@@ -1224,8 +1225,8 @@ Massimiliano Volpe
 <span id="cb6-2"><a href aria-label="2"></a><span class="bu">cd</span> /home/user/documents</span>
 <span id="cb6-3"><a href aria-label="3"></a></span>
 <span id="cb6-4"><a href aria-label="4"></a><span class="co"># Relative path</span></span>
-<span id="cb6-5"><a href aria-label="5"></a><span class="bu">cd</span> documents       <span class="co"># If you&#39;re in /home/user/</span></span>
-<span id="cb6-6"><a href aria-label="6"></a><span class="bu">cd</span> ../sibling      <span class="co"># Go to sibling directory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-5"><a href aria-label="5"></a><span class="bu">cd</span> documents       <span class="co"># If you&#39;re in /home/user/, takes you to /home/user/documents</span></span>
+<span id="cb6-6"><a href aria-label="6"></a><span class="bu">cd</span> ../data         <span class="co"># Go up one level, then into data: /home/user/data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="file-operations" class="slide level2">
 <h2>File Operations</h2>
@@ -1263,6 +1264,15 @@ Massimiliano Volpe
 <span id="cb12-6"><a href aria-label="6"></a></span>
 <span id="cb12-7"><a href aria-label="7"></a><span class="co"># List archive contents</span></span>
 <span id="cb12-8"><a href aria-label="8"></a><span class="fu">tar</span> <span class="at">-tzf</span> archive.tar.gz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>What the flags mean:</strong></p>
+<ul>
+<li><code>-c</code> - Create a new archive</li>
+<li><code>-x</code> - Extract files from an archive</li>
+<li><code>-t</code> - List the contents without extracting</li>
+<li><code>-z</code> - Compress/decompress with gzip (the <code>.gz</code> part)</li>
+<li><code>-f</code> - The next argument is the archive filename</li>
+<li><code>-v</code> - Verbose: print each file as it is processed</li>
+</ul>
 </section>
 <section id="text-processing" class="slide level2">
 <h2>Text Processing</h2>
@@ -1369,7 +1379,8 @@ Massimiliano Volpe
 <p><strong>Example:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href aria-label="1"></a><span class="fu">ls</span> <span class="pp">*</span>.txt                 <span class="co"># List all files ending with .txt</span></span>
 <span id="cb27-2"><a href aria-label="2"></a><span class="fu">cp</span> file<span class="pp">?</span>.txt backup/     <span class="co"># Copy files like file1.txt, file2.txt to backup/</span></span>
-<span id="cb27-3"><a href aria-label="3"></a><span class="fu">ls</span> linux_practice/<span class="pp">*</span>.txt  <span class="co"># List all .txt files in linux_practice</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-3"><a href aria-label="3"></a><span class="fu">ls</span> linux_practice/<span class="pp">*</span>.txt  <span class="co"># List all .txt files in linux_practice</span></span>
+<span id="cb27-4"><a href aria-label="4"></a><span class="fu">ls</span> sample_<span class="pp">[</span><span class="ss">abc</span><span class="pp">]</span>.txt      <span class="co"># List sample_a.txt, sample_b.txt, sample_c.txt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="getting-help" class="slide level2">
 <h2>Getting Help</h2>
@@ -1477,16 +1488,17 @@ Massimiliano Volpe
 <h2>More Exercises… 💻</h2>
 <h3 id="exercise-1-navigation">Exercise 1: Navigation</h3>
 <ol type="1">
-<li>Open your terminal</li>
+<li>Open your terminal (<code>Ctrl + Alt + T</code> on Linux)</li>
 <li>Check your current directory with <code>pwd</code></li>
 <li>List the contents with <code>ls</code></li>
 <li>Create a new directory called <code>linux_practice</code></li>
 <li>Change into that directory</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href aria-label="1"></a><span class="bu">pwd</span></span>
-<span id="cb31-2"><a href aria-label="2"></a><span class="fu">ls</span> <span class="at">-la</span></span>
-<span id="cb31-3"><a href aria-label="3"></a><span class="fu">mkdir</span> <span class="at">-p</span> linux_practice</span>
-<span id="cb31-4"><a href aria-label="4"></a><span class="bu">cd</span> linux_practice</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href aria-label="1"></a><span class="co"># Open a terminal first: Ctrl + Alt + T  (Linux)</span></span>
+<span id="cb31-2"><a href aria-label="2"></a><span class="bu">pwd</span></span>
+<span id="cb31-3"><a href aria-label="3"></a><span class="fu">ls</span> <span class="at">-la</span></span>
+<span id="cb31-4"><a href aria-label="4"></a><span class="fu">mkdir</span> <span class="at">-p</span> linux_practice</span>
+<span id="cb31-5"><a href aria-label="5"></a><span class="bu">cd</span> linux_practice</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level2">
 
@@ -1498,10 +1510,11 @@ Massimiliano Volpe
 <li>Copy the file to <code>backup.txt</code></li>
 <li>List the directory contents</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href aria-label="1"></a><span class="bu">echo</span> <span class="st">&quot;Hello Linux&quot;</span> <span class="op">&gt;</span> notes.txt</span>
-<span id="cb32-2"><a href aria-label="2"></a><span class="fu">cat</span> notes.txt</span>
-<span id="cb32-3"><a href aria-label="3"></a><span class="fu">cp</span> notes.txt backup.txt</span>
-<span id="cb32-4"><a href aria-label="4"></a><span class="fu">ls</span> <span class="at">-la</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href aria-label="1"></a><span class="fu">touch</span> notes.txt</span>
+<span id="cb32-2"><a href aria-label="2"></a><span class="bu">echo</span> <span class="st">&quot;Hello Linux&quot;</span> <span class="op">&gt;</span> notes.txt</span>
+<span id="cb32-3"><a href aria-label="3"></a><span class="fu">cat</span> notes.txt</span>
+<span id="cb32-4"><a href aria-label="4"></a><span class="fu">cp</span> notes.txt backup.txt</span>
+<span id="cb32-5"><a href aria-label="5"></a><span class="fu">ls</span> <span class="at">-la</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </section>
     </div>

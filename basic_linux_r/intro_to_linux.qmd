@@ -440,21 +440,24 @@ tldr ls
 
 ### Question 1
 Which command shows your current directory?
-- A) `ls`
-- B) `pwd`
-- C) `cd`
+
+- A\) `ls`
+- B\) `pwd`
+- C\) `cd`
 
 ### Question 2
 How do you create a new directory?
-- A) `touch newdir`
-- B) `mkdir newdir`
-- C) `cp newdir`
+
+- A\) `touch newdir`
+- B\) `mkdir newdir`
+- C\) `cp newdir`
 
 ### Question 3
 What's the safest way to delete a file?
-- A) `rm file.txt`
-- B) `rm -rf file.txt`
-- C) `rm -i file.txt`
+
+- A\) `rm file.txt`
+- B\) `rm -rf file.txt`
+- C\) `rm -i file.txt`
 
 ---
 

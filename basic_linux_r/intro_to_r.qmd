@@ -27,7 +27,7 @@ preview: false
 ## Introduction to R
 
 ### Course date: 03 November 2026
-### Last modified: 26 October 2026
+### Last modified: 02 November 2026
 - **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
 
 ### Teachers:
@@ -924,21 +924,24 @@ grade_letter(92)
 
 ### Question 1
 Which operator is used for assignment in R?
-- A) `=`
-- B) `<-`
-- C) Both A and B
+
+- A\) `=`
+- B\) `<-`
+- C\) Both A and B
 
 ### Question 2
 What function creates a vector in R?
-- A) `vector()`
-- B) `c()`
-- C) `make_vector()`
+
+- A\) `vector()`
+- B\) `c()`
+- C\) `make_vector()`
 
 ### Question 3
 How do you access the first element of a vector named `my_vec`?
-- A) `my_vec[0]`
-- B) `my_vec[1]`
-- C) `my_vec.first`
+
+- A\) `my_vec[0]`
+- B\) `my_vec[1]`
+- C\) `my_vec.first`
 
 ---
 

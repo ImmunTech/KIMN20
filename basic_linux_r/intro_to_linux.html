@@ -1126,7 +1126,7 @@ Massimiliano Volpe
 <section id="introduction-to-linux" class="slide level2">
 <h2>Introduction to Linux</h2>
 <h3 id="course-date-03-november-2026">Course date: 03 November 2026</h3>
-<h3 id="last-modified-02-november-2026">Last modified: 02 November 2026</h3>
+<h3 id="last-modified-03-november-2026">Last modified: 03 November 2026</h3>
 <ul>
 <li><strong>RStudio Server</strong>: <a href="https://130.235.8.214/rstudio">https://130.235.8.214/rstudio</a></li>
 </ul>
@@ -1224,9 +1224,12 @@ Massimiliano Volpe
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href aria-label="1"></a><span class="co"># Absolute path</span></span>
 <span id="cb6-2"><a href aria-label="2"></a><span class="bu">cd</span> /home/user/documents</span>
 <span id="cb6-3"><a href aria-label="3"></a></span>
-<span id="cb6-4"><a href aria-label="4"></a><span class="co"># Relative path</span></span>
-<span id="cb6-5"><a href aria-label="5"></a><span class="bu">cd</span> documents       <span class="co"># If you&#39;re in /home/user/, takes you to /home/user/documents</span></span>
-<span id="cb6-6"><a href aria-label="6"></a><span class="bu">cd</span> ../data         <span class="co"># Go up one level, then into data: /home/user/data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-4"><a href aria-label="4"></a><span class="co"># Relative path - starting from /home/user</span></span>
+<span id="cb6-5"><a href aria-label="5"></a><span class="bu">cd</span> documents       <span class="co"># Down into a subfolder: /home/user/documents</span></span>
+<span id="cb6-6"><a href aria-label="6"></a></span>
+<span id="cb6-7"><a href aria-label="7"></a><span class="co"># Relative path - now starting from /home/user/documents</span></span>
+<span id="cb6-8"><a href aria-label="8"></a><span class="bu">cd</span> ..              <span class="co"># &quot;..&quot; is the parent directory: /home/user</span></span>
+<span id="cb6-9"><a href aria-label="9"></a><span class="bu">cd</span> ../data         <span class="co"># Up to the parent, then down into data: /home/user/data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="file-operations" class="slide level2">
 <h2>File Operations</h2>

@@ -23,7 +23,7 @@ execute:
 ## Introduction to Linux
 
 ### Course date: 03 November 2026
-### Last modified: 02 November 2026
+### Last modified: 03 November 2026
 - **RStudio Server**: [https://130.235.8.214/rstudio](https://130.235.8.214/rstudio)
 
 ### Teachers:
@@ -147,9 +147,12 @@ cd -               # Go to previous directory
 # Absolute path
 cd /home/user/documents
 
-# Relative path
-cd documents       # If you're in /home/user/, takes you to /home/user/documents
-cd ../data         # Go up one level, then into data: /home/user/data
+# Relative path - starting from /home/user
+cd documents       # Down into a subfolder: /home/user/documents
+
+# Relative path - now starting from /home/user/documents
+cd ..              # ".." is the parent directory: /home/user
+cd ../data         # Up to the parent, then down into data: /home/user/data
 ```
 
 ---

@@ -49,9 +49,14 @@
   z-index: 10 !important;
 }
 
-/* Background image */
+/* Background image.
+   Uses assets/cover.webp: same image and resolution as assets/cover.png
+   (4000x2250), but ~8x smaller, which removes about 5 MB from every
+   rendered deck. Verified to render pixel-identically.
+   Keep assets/cover.png: it is the full-quality original the WebP is
+   derived from. It is not referenced here, but it is not an orphan. */
 .reveal-viewport {
-  background-image: url('assets/cover.png') !important;
+  background-image: url('assets/cover.webp') !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;

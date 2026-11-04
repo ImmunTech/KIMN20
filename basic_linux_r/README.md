@@ -2,7 +2,7 @@
 
 Introductory lesson decks for KIMN20 covering Linux commands, R basics, and IDEs.
 
-All teaching material is delivered as **self-contained HTML presentations** rendered from Quarto (`.qmd`) source files (reveal.js). The legacy Jupyter notebooks in `tests/` are no longer used.
+All teaching material is delivered as **self-contained HTML presentations** rendered from Quarto (`.qmd`) source files (reveal.js).
 
 ## Presentations
 
@@ -43,25 +43,21 @@ basic_linux_r/
 ├── IDEs.qmd                 # Source: IDE deck
 ├── IDEs.html                # Rendered: IDE deck
 ├── assets/                  # Images, logos, data files used by the decks
-├── chalkboard/              # Bonus chalkboard-format tutorial (Linux commands)
-├── docker/
-│   └── Dockerfile           # Optional container for serving the HTML decks
-└── tests/                   # Legacy notebooks and work-in-progress files (not used in teaching)
+└── labs/                    # Hands-on lab material and cheat sheet
 ```
 
-## Optional: serve via Docker
+The `.qmd` files stay at the top level on purpose: Quarto resolves
+`assets/` and `custom.css` relative to the source file, and the render
+workflow refers to these paths directly.
 
-The container starts a static web server with the rendered HTML:
+Earlier material that is no longer taught (the chalkboard deck, the
+legacy Jupyter notebooks and the Docker setup) was removed in November
+2026. It is preserved in the [`KIMN20-2025`](https://github.com/ImmunTech/KIMN20/tree/KIMN20-2025)
+tag and can be restored with, for example:
 
 ```bash
-# Build the container (one time)
-docker build --platform linux/amd64 -t kimn20 docker/
-
-# Run it
-docker run -p 8000:8000 kimn20
+git checkout KIMN20-2025 -- basic_linux_r/chalkboard
 ```
-
-Then open http://localhost:8000 in a browser and pick a deck.
 
 ## Topics covered
 

@@ -38,15 +38,18 @@ RNA-seq plots.
 ## FastQC resources
 
 The two PDFs in `labs/` are local copies, kept so the lab works without
-a network connection. For the current version, and for anything the PDFs
-do not cover, use the source at the Babraham Institute:
+a network connection. They came from:
 
-- Project page: <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/>
-- Documentation: <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/>
+- `FastQC_Manual.pdf` —
+  <https://mugenomicscore.missouri.edu/PDF/FastQC_Manual.pdf>
+- `FastQC_TutorialAndFAQ.pdf` —
+  <https://rtsf.natsci.msu.edu/sites/_rtsf/assets/File/FastQC_TutorialAndFAQ_080717.pdf>
+  (this host sits behind bot protection: a direct download returns an
+  HTML challenge page, so open it in a browser)
 
-Prefer those links over third-party rehosted copies: some are served
-behind bot protection and fail to download, and none of them track the
-upstream version.
+Both are third-party copies. FastQC itself is maintained at the Babraham
+Institute, which is where to look for the current documentation:
+<https://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help/>
 
 ## Lecture deck
 

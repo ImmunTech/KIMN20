@@ -1,8 +1,14 @@
 # Mac files
+# A pattern without a slash matches at any depth, so these cover subfolders too.
 .DS_Store
-._.DS_Store
-**/.DS_Store
-**/._.DS_Store
+# AppleDouble sidecars, created when copying to FAT/exFAT volumes
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.DocumentRevisions-V100
+__MACOSX
 
 # Agent session state (pi/paseo task outputs)
 .pi/

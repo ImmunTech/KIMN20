@@ -1,0 +1,52 @@
+/* Input code blocks */
+.quarto-code-cell .sourceCode, pre.sourceCode {
+  background: #f6f8fa;              /* soft gray */
+  border: 1px solid #d0d7de;         /* subtle outline */
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+}
+
+/* Output blocks (e.g., printed text, plots) */
+.cell-output, .cell-output-display, .cell-output-stdout {
+  background: #fafbfc;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Keep code nicely contained when long */
+pre code {
+  white-space: pre-wrap;             /* wrap long lines */
+  word-break: break-word;
+}
+
+/* Make copy button float a bit nicer */
+.code-with-copy .code-copy-button {
+  top: 8px;
+  right: 8px;
+}
+
+/* Dark mode tweaks */
+body.quarto-dark .quarto-code-cell .sourceCode,
+body.quarto-dark pre.sourceCode {
+  background: #0b1220;
+  border-color: #334155;
+}
+body.quarto-dark .cell-output,
+body.quarto-dark .cell-output-display,
+body.quarto-dark .cell-output-stdout {
+  background: #0a0f1c;
+  border-color: #2b3443;
+}
+
+
+.terminal {
+  background: #0f1117;
+  color: #e6e6e6;
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  line-height: 1.35;
+  overflow-x: auto;
+}

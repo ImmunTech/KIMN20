@@ -2,6 +2,27 @@
 
 Run this check on the bioinformatics server **before each annual KIMN20 RNA-seq lab** to confirm that the software environment, input data and complete analysis pipeline still work.
 
+## 0. Get the files
+
+If you don't already have the validator on the server, get the two required files. They must sit in the same directory, because the script looks for `environment.yml` next to itself.
+
+Simplest — clone the repo (or run `git pull` if you already have it):
+
+```bash
+git clone https://github.com/ImmunTech/KIMN20.git
+cd KIMN20/transcriptomics/validation
+```
+
+Or download both files into any directory of your choice (e.g. `~/validation/`):
+
+```bash
+mkdir -p ~/validation
+curl -fO https://raw.githubusercontent.com/ImmunTech/KIMN20/main/transcriptomics/validation/validate_lab.sh
+curl -fO https://raw.githubusercontent.com/ImmunTech/KIMN20/main/transcriptomics/validation/environment.yml
+```
+
+Then continue with §1.
+
 ## 1. Run the validation
 
 It can be launched from any working directory, because it resolves `environment.yml` relative to its own script location:

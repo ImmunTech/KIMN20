@@ -1048,7 +1048,15 @@ This generates four PNG files in `plots/`: `pca_plot.png`, `ma_plot.png`, `volca
 
 #### **PCA plot**
 
-**What it shows:** Each point is an entire RNA-seq sample and not a gene. A PCA reduces the thousands of expression measurements to a few components that capture prominent patterns across the samples. For this plot, the script uses the VST gene-expression matrix and labels the six sample accessions.
+**What it shows:** Each point is an entire RNA-seq sample and not a gene. A PCA reduces the thousands of expression measurements to a few components that capture prominent patterns across the samples. For this plot, the script uses the VST gene-expression matrix and labels the six sample accessions. 
+
+::: {.callout-note collapse="true"}
+## What is VST?
+
+**VST (Variance Stabilizing Transformation)** is a transformation performed by DESeq2 that reduces the dependence of gene-expression variability on the average expression level, making genes with different expression levels more comparable.
+
+Unlike raw counts, VST-transformed values are better suited for exploratory analyses such as PCA, where we want to identify biological patterns and differences between samples rather than differences driven by the mean–variance relationship of RNA-seq counts.
+:::
 
 A popular way to visualise general patterns of gene expression in your data is to produce either PCA (Principal Component Analysis) or MDS (Multi Dimensional Scaling) plots. These methods aim at summarising the main patterns of expression in the data and display them on a two-dimensional space and still retain as much information as possible. To properly evaluate these kind of results is non-trivial, but in for RNA-seq data we often use them to get an idea of the difference in expression between treatments and also to get an idea of the similarity among replicates. If the plots shows clear clusters of samples that corresponds to treatment it is an indication of treatment actually having an effect on gene expression. If the distance between replicates from a single treatment is very large it suggests large variance within the treatment, something that will influence the detection of differentially expressed genes between treatments.
 

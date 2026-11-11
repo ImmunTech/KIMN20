@@ -17,6 +17,7 @@ Or download both files into any directory of your choice (e.g. `~/validation/`):
 
 ```bash
 mkdir -p ~/validation
+cd ~/validation
 curl -fO https://raw.githubusercontent.com/ImmunTech/KIMN20/main/transcriptomics/validation/validate_lab.sh
 curl -fO https://raw.githubusercontent.com/ImmunTech/KIMN20/main/transcriptomics/validation/environment.yml
 ```

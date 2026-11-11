@@ -7,7 +7,7 @@ Run this check on the bioinformatics server **before each annual KIMN20 RNA-seq 
 It can be launched from any working directory, because it resolves `environment.yml` relative to its own script location:
 
 ```bash
-bash /path/to/KIMN20/transcriptomics/validation/validate_lab.sh
+bash validate_lab.sh
 echo "Exit code: $?"
 ```
 

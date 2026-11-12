@@ -77,9 +77,23 @@ KEEP_ENV=1 bash validate_lab.sh
 
 The temporary environment will remain installed. Its name is printed at the end; remove it manually when no longer needed.
 
-## 4. Last verified baseline
+## 4. Last verified runs
 
-**11 November 2026 — `bioinf-serv2`**
+### 12 November 2026 — `bioinf-serv2` (latest)
+
+**46 PASS, 0 WARN, 0 FAIL, 0 SKIP** — all pipeline steps finished with exit code 0; total runtime 3 min 23 s.
+
+- Verified against the revised 2026 lab: the featureCounts command with `-p --countReadPairs` passed, and both new GO dot-plot checks (plot generation + scientific data check) passed.
+- MultiQC completed successfully with `--interactive`.
+- Both files were downloaded from GitHub with `wget` and used as-is:
+  - `validate_lab.sh` — SHA256 `9647ae751ab2bd34d16035617d2654c23dde36cacaca8d61eefff8c4e3d98ca0`
+  - `environment.yml` — SHA256 `5c43322c5166bce708a22ba2f567197ce7bdb4980a84da18a60ce5ed366c326c`
+- The disposable Conda environment was removed automatically after the run.
+- Report: `/home/massivol/rnaseq_validation_20261112_110000/REPORT.txt` (logs in `.../logs`, environment evidence in `.../evidence`).
+
+This run validates the scientific pipeline and the 46 checks; it does not certify the teaching HTML. The outstanding corrections to the lab pages (e.g. the `../scipts/` path typo in the GO-plot section) are tracked separately with Daniel.
+
+### 11 November 2026 — `bioinf-serv2` (previous baseline)
 
 - Two successful complete runs: **44 PASS, 0 WARN, 0 FAIL, 0 SKIP**.
 - Scientific pipeline: approximately 3–4 minutes.
@@ -89,6 +103,6 @@ The temporary environment will remain installed. Its name is printed at the end;
 
 The validation uses mouse chromosome 19 for mapping; DESeq2 uses the separately provided whole-genome count matrix.
 
-Since this baseline, the validator has been updated for the revised 2026 lab and now runs **46 checks** (the 44-check baseline above is preserved, nothing removed or weakened): featureCounts uses explicit paired-end fragment counting (`-p --countReadPairs`), and two new checks validate the lab's GO enrichment dot plot (script + PNG, and the data behind it). New artifacts in the working folder: `rnaseq/funannot/plot_go_up.R`, `rnaseq/funannot/go_up_top_terms.png`, `logs/10b_go_plot.log`, `logs/10c_go_check.log`.
+Between the two runs the validator was updated for the revised 2026 lab: it now runs **46 checks** (the 44-check baseline is preserved, nothing removed or weakened) — featureCounts uses explicit paired-end fragment counting (`-p --countReadPairs`), and two new checks validate the lab's GO enrichment dot plot (script + PNG, and the data behind it). New artifacts in the working folder: `rnaseq/funannot/plot_go_up.R`, `rnaseq/funannot/go_up_top_terms.png`, `logs/10b_go_plot.log`, `logs/10c_go_check.log`.
 
 **Files:** `validate_lab.sh` (validator), `environment.yml` (pinned dependencies), `legacy/validate_lab_original.sh` (previous working validator).

@@ -58,6 +58,19 @@ conventions as the decks in `basic_linux_r/`: a Quarto `.qmd` source
 rendered to a self-contained reveal.js `.html`, reusing the shared
 `custom.css` and the LTH logo.
 
+## NBIS NGS-intro workshop
+
+Reference links for the NBIS NGS-intro workshop this module builds on.
+These are for the **2027-04 edition** — the `2704` path segment in the
+URLs is the edition tag, so update them when NBIS publishes the next
+edition:
+
+- Workshop repository: <https://github.com/NBISweden/workshop-ngsintro>
+- 2027-04 contents: <https://nbisweden.github.io/workshop-ngsintro/2704/home_contents.html>
+- RNA-seq slides: <https://nbisweden.github.io/workshop-ngsintro/2704/topics/rnaseq/slide_rnaseq.html#/title-slide>
+- "Bulk RNA-Seq and Differential Gene Expression Workflow" (YouTube):
+  <https://www.youtube.com/watch?v=gC_nslHgSa8&t=2717s>
+
 ## Project structure
 
 ```

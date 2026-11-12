@@ -14,7 +14,7 @@
 #   4. activates that exact environment, isolates R, and verifies that the
 #      scientific tools resolve inside the temporary environment (not base).
 #      A pre-existing environment named `rnaseq_lab` is never used,
-#   5. runs the previously validated scientific validator (44 checks) —
+#   5. runs the previously validated scientific validator (46 checks) —
 #      embedded VERBATIM in this file below the "SCIENTIFIC VALIDATOR"
 #      marker. It is extracted at runtime to $LOGS/scientific_validator.sh
 #      and executed as a subprocess, so its own exit-code handling,
@@ -37,7 +37,7 @@
 # Optional environment variables:
 #   ROOT=/path        run directory (default: ~/rnaseq_validation_<timestamp>)
 #   THREADS=4         threads for HISAT2 / featureCounts (the lab uses 1)
-#   SKIP_ANNOT=1      skip the bonus part (goseq / Reactome)
+#   SKIP_ANNOT=1      skip the bonus part (goseq / Reactome / GO dot plot)
 #   KEEP_ENV=1        do NOT remove the temporary conda environment at the end
 #
 # Run directory layout (outside the temporary conda environment):
@@ -549,14 +549,15 @@ cp "$ENV_YML" "$EV/environment.yml"
 echo "   evidence written to $EV"
 
 # =============================================================================
-# PHASE 6 — Run the scientific validator (44 checks)
+# PHASE 6 — Run the scientific validator (46 checks)
 # =============================================================================
-echo; echo "━━ PHASE 6: scientific validation (44 checks) ━━"
+echo; echo "━━ PHASE 6: scientific validation (46 checks) ━━"
 SCI="$LOGS/scientific_validator.sh"
-# The scientific validator is embedded verbatim in this file (between the
-# SCIENTIFIC VALIDATOR markers below). It is extracted here and executed as
-# a subprocess so that its exit-code handling, PASS/WARN/FAIL/SKIP reporting
-# and `finish` logic work exactly as validated (44 PASS on the server).
+# The scientific validator is embedded in this file (between the SCIENTIFIC
+# VALIDATOR markers below). It is extracted here and executed as a subprocess
+# so that its exit-code handling, PASS/WARN/FAIL/SKIP reporting and `finish`
+# logic work exactly as validated: 44-PASS baseline on the server
+# (2026-11-11), plus the 2 GO dot-plot checks added for the revised 2026 lab.
 cat > "$SCI" <<'SCIENTIFIC_VALIDATOR_EOF'
 #!/usr/bin/env bash
 # =============================================================================
@@ -565,8 +566,9 @@ cat > "$SCI" <<'SCIENTIFIC_VALIDATOR_EOF'
 # Reproduces the RNA-seq workflow using compatible tool commands and,
 # after every step, checks the RESULTS and not just the exit
 # code: read counts of the fastq files, alignment rates, featureCounts assigned
-# %, number of MultiQC reports, agreement of the DE genes with the reference
-# files, muscle GO terms, PNG sizes, etc.
+# % (paired-end fragment counting: -p --countReadPairs), number of MultiQC
+# reports, agreement of the DE genes with the reference files, muscle GO
+# terms, the GO dot plot, PNG sizes, etc.
 #
 # Usage:
 #   bash validate_lab.sh
@@ -578,7 +580,7 @@ cat > "$SCI" <<'SCIENTIFIC_VALIDATOR_EOF'
 #   ENV_NAME=rnaseq_lab     conda environment to activate
 #   THREADS=4               threads for HISAT2 / featureCounts
 #   ROOT=/path/to/output    optional working directory (default: timestamped in HOME)
-#   SKIP_ANNOT=1            skip the bonus part (goseq / Reactome)
+#   SKIP_ANNOT=1            skip the bonus part (goseq / Reactome / GO dot plot)
 #
 # Output: ~/rnaseq_validation_<timestamp>/
 #           rnaseq/             working pipeline folder
@@ -759,6 +761,28 @@ ve <- 100 * p$sdev^2 / sum(p$sdev^2)
 cat("NCOL=", ncol(v), "\n", sep = "")
 cat("PC1_SEPARATES=", sep(p$x[, 1]), "\nPC2_SEPARATES=", sep(p$x[, 2]), "\n", sep = "")
 cat("PC1_VAR=", sprintf("%.1f", ve[1]), "\nPC2_VAR=", sprintf("%.1f", ve[2]), "\n", sep = "")
+EOF
+
+cat > "$LOGS/chk_go.R" <<'EOF'
+# data check for the GO dot plot: mirrors the lab's selection rule in
+# plot_go_up.R (BH-adjusted p < 0.05, then the 12 smallest adjusted p-values)
+a <- commandArgs(TRUE)
+go <- read.delim(a[1])
+go$FDR <- p.adjust(go$over_represented_pvalue, method = "BH")
+sig <- go[!is.na(go$FDR) & go$FDR < 0.05, ]
+sel <- head(sig[order(sig$FDR), ], 12)
+cat("NTERMS=", nrow(go), "\n", sep = "")
+cat("NSIG=", nrow(sig), "\n", sep = "")
+cat("NSEL=", nrow(sel), "\n", sep = "")
+if (nrow(sel) > 0) {
+  cat("TOP=", sel$term[1], "\n", sep = "")
+  cat("TOPFDR=", sprintf("%.3g", sel$FDR[1]), "\n", sep = "")
+  cat("ONTOS=", paste(sort(unique(sel$ontology)), collapse = ","), "\n", sep = "")
+} else {
+  cat("TOP=\n", sep = "")
+  cat("TOPFDR=\n", sep = "")
+  cat("ONTOS=\n", sep = "")
+}
 EOF
 
 echo "======================================================================="
@@ -1092,6 +1116,7 @@ featureCounts \
   -t "exon" \
   -g "gene_id" \
   -p \
+  --countReadPairs \
   -s 0 \
   -T 1 \
   ../3_mapping/*.bam
@@ -1266,6 +1291,72 @@ else
       add PASS "Top Reactome pathway up / down" "up: $(awk -F'\t' 'NR==2{print $NF}' "$FA_D/reactome_up.txt") | down: $(awk -F'\t' 'NR==2{print $NF}' "$FA_D/reactome_down.txt")"
     else
       add FAIL "annotate_de_results.R did not complete" "exit=$rc, tables ok=$ok - see $LOGS/10_annot.log"
+    fi
+  fi
+  # --- GO dot plot: the lab's "Optional: Visualise enriched GO terms" figure.
+  # Validated as a MANDATORY check of the teaching material: a broken optional
+  # step would still block the students who follow it. It is still skipped with
+  # the rest of STEP 8 when SKIP_ANNOT=1 (allowed-SKIP budget unchanged).
+  if need "Rscript plot_go_up.R" "$LAB/funannot/go_up.txt"; then
+    cat > "$LAB/funannot/plot_go_up.R" <<'EOF'
+library(ggplot2)
+
+# Read the GO enrichment results generated by annotate_de_results.R
+go <- read.delim("../funannot/go_up.txt")
+
+# Correct for testing many GO terms and keep significant terms
+go$FDR <- p.adjust(go$over_represented_pvalue, method = "BH")
+go <- go[!is.na(go$FDR) & go$FDR < 0.05, ]
+if (nrow(go) == 0) stop("No GO terms passed FDR < 0.05")
+
+# Select 12 terms with the smallest adjusted p-values
+go <- head(go[order(go$FDR), ], 12)
+go$score <- -log10(pmax(go$FDR, .Machine$double.xmin))
+go$term_label <- make.unique(as.character(go$term))
+go$term_label <- factor(go$term_label, levels = rev(go$term_label))
+
+p <- ggplot(go, aes(x = score, y = term_label,
+                    size = numDEInCat, colour = ontology)) +
+  geom_point(alpha = 0.85) +
+  scale_size_continuous(range = c(3, 9)) +
+  labs(title = "GO enrichment: genes higher in KO",
+       x = expression(-log[10]("adjusted p-value")),
+       y = NULL, size = "DE genes", colour = "GO category") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.major.y = element_blank())
+
+ggsave("go_up_top_terms.png", p, width = 10, height = 6, dpi = 180)
+EOF
+    run "Rscript plot_go_up.R (GO dot plot)" "$LOGS/10b_go_plot.log" in_dir funannot Rscript plot_go_up.R
+    rc=$?
+    GP="$LAB/funannot/go_up_top_terms.png"
+    if [ -s "$GP" ]; then
+      gdim=$(file "$GP" | grep -oE '[0-9]+ x [0-9]+' | head -1)
+      gkb=$(( $(stat -c %s "$GP") / 1024 ))
+      if [ $rc -eq 0 ] && [ "$gdim" = "1800 x 1080" ] && [ "$gkb" -ge 8 ]; then
+        add PASS "GO dot plot: go_up_top_terms.png produced (1800 x 1080, ${gkb}KB)"
+      else
+        add FAIL "GO dot plot: wrong PNG" "exit=$rc, size=${gdim:-unknown} (expected 1800 x 1080), ${gkb}KB - see $LOGS/10b_go_plot.log"
+      fi
+    else
+      add FAIL "GO dot plot: go_up_top_terms.png missing" "exit=$rc - see $LOGS/10b_go_plot.log"
+    fi
+    if Rscript "$LOGS/chk_go.R" "$LAB/funannot/go_up.txt" >"$LOGS/10c_go_check.log" 2>&1; then
+      GL="$LOGS/10c_go_check.log"
+      nsig=$(kv "$GL" NSIG); nsel=$(kv "$GL" NSEL)
+      top=$(kv "$GL" TOP); topfdr=$(kv "$GL" TOPFDR); ontos=$(kv "$GL" ONTOS)
+      badont=$(printf '%s\n' "$ontos" | tr ',' '\n' | grep -vxE 'BP|CC|MF' | sort -u | paste -sd, -)
+      if fge "$nsel" 12 \
+         && printf '%s' "$top" | grep -qiE 'muscle|myofibril|sarcomere|contractile|striated|myosin' \
+         && [ -z "$badont" ]; then
+        add PASS "GO dot plot data: the 12-term selection is meaningful" \
+          "NSIG=$nsig NSEL=$nsel; top=$top (FDR=$topfdr); ontologies: $ontos"
+      else
+        add FAIL "GO dot plot data: unexpected selection from go_up.txt" \
+          "NSIG=$nsig NSEL=$nsel; top=${top:-<none>} (FDR=${topfdr:-?}); ontologies: ${ontos:-?} (bad: ${badont:-ok})"
+      fi
+    else
+      add FAIL "GO dot plot data check failed (R error)" "see $LOGS/10c_go_check.log"
     fi
   fi
 fi

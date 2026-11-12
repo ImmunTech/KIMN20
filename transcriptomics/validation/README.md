@@ -37,9 +37,13 @@ The script automatically:
 
 - Checks Conda and Mamba (installs Mamba in Conda `base` if missing).
 - Creates a fresh temporary environment using `environment.yml`.
-- Runs the complete RNA-seq pipeline and 44 validation checks.
+- Runs the complete RNA-seq pipeline and 46 validation checks.
 - Saves results and software versions.
 - Removes the temporary environment when finished.
+
+**Counting:** featureCounts is run with `-p --countReadPairs`, counting paired-end fragments explicitly — the same command as the 2026 lab. Fragment counts are about half of read-level counts, but all downstream checks (assignment rate, sample matching, correlations, DE, PCA) are independent of the counting unit, so their thresholds are unchanged.
+
+**GO dot plot:** the lab's optional GO enrichment dot plot (the 12 most significant up-regulated GO terms in `funannot/go_up.txt`) is reproduced with the lab's own R script and validated as a **mandatory** check — a broken optional step would still block students who follow it. Two checks run: the script executes and produces a non-empty 1800×1080 `go_up_top_terms.png`, and the data behind it is sane (≥ 12 terms with BH-adjusted p < 0.05, a muscle term on top, ontologies only BP/CC/MF). With `SKIP_ANNOT=1` it is skipped together with the rest of the functional annotation.
 
 **Note:** Installing Mamba into `base` modifies that environment. On `bioinf-serv2`, Mamba was installed manually with `conda install mamba -c conda-forge -y` and was subsequently used by the validator in two complete runs; only the validator's automatic Mamba installation branch remains untested.
 
@@ -48,7 +52,7 @@ The script automatically:
 Expected output:
 
 ```text
-PASS: 44   WARN: 0   FAIL: 0   SKIP: 0
+PASS: 46   WARN: 0   FAIL: 0   SKIP: 0
 LAB OK: all result checks passed.
 Validator exit code: 0
 ```
@@ -57,7 +61,7 @@ The complete results are saved under:
 
 ```text
 ~/rnaseq_validation_<timestamp>/
-├── REPORT.txt        # Summary of all 44 checks
+├── REPORT.txt        # Summary of all 46 checks
 ├── logs/             # Individual pipeline logs
 ├── evidence/         # Software versions and Conda environment details
 └── rnaseq/           # Generated laboratory outputs
@@ -84,5 +88,7 @@ The temporary environment will remain installed. Its name is printed at the end;
 - Mamba installed manually (`conda install mamba -c conda-forge -y`) and used successfully in both runs; the validator's automatic Mamba installation branch: **not yet tested**.
 
 The validation uses mouse chromosome 19 for mapping; DESeq2 uses the separately provided whole-genome count matrix.
+
+Since this baseline, the validator has been updated for the revised 2026 lab and now runs **46 checks** (the 44-check baseline above is preserved, nothing removed or weakened): featureCounts uses explicit paired-end fragment counting (`-p --countReadPairs`), and two new checks validate the lab's GO enrichment dot plot (script + PNG, and the data behind it). New artifacts in the working folder: `rnaseq/funannot/plot_go_up.R`, `rnaseq/funannot/go_up_top_terms.png`, `logs/10b_go_plot.log`, `logs/10c_go_check.log`.
 
 **Files:** `validate_lab.sh` (validator), `environment.yml` (pinned dependencies), `legacy/validate_lab_original.sh` (previous working validator).

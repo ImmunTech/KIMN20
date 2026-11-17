@@ -17,7 +17,7 @@ format:
       right: "Last updated: {{< meta date-modified >}}"
 editor: visual
 
-date-modified: 2026-11-11
+date-modified: 2026-11-17
 ---
 
 ## Introduction
@@ -30,11 +30,13 @@ Everything we will go through here today is adapted from the [NBIS RNAseq](https
 
 We will go through:
 
-- Check the quality of the raw reads with **FastQC (and MultiQC)**
+- Check the quality of the raw reads with **FastQC**
 
 - Map the reads to the reference genome using **HISAT2**
 
-- Assess the post-alignment quality using **Qualimap** (or **Picard)**
+- Review the **HISAT2 alignment statistics** and index the BAM files with **samtools**
+
+- Summarize the quality control results with **MultiQC**
 
 - Count the reads overlapping with genes using **featureCounts**
 
@@ -71,13 +73,13 @@ First we need to set up our conda environment where we will install our tools an
 conda install mamba -c conda-forge
 ```
 
-Next we will download a file called environment.yaml, which specifies the packages and their version:
+Next we will download a file called environment.yml, which specifies the packages and their version:
 
 ``` bash
-wget https://github.com/ImmunTech/KIMN20/blob/main/transcriptomics/validation/environment.yml
+wget https://raw.githubusercontent.com/ImmunTech/KIMN20/main/transcriptomics/validation/environment.yml
 ```
 
-To create a conda environment using an environment.yaml file we do:
+To create a conda environment using an environment.yml file we do:
 
 ``` bash
 mamba env create -f environment.yml
@@ -148,7 +150,9 @@ Navigate to the `1_raw` folder. If you have followed the steps above, you are cu
 cd 1_raw/
 ```
 
-Then download the fastq files. You can either run each command at a time or copy them and put them in a bash script (see below)
+Then download the fastq files. There are two alternative approaches: run the `wget` commands directly, or create and run a `get_data.sh` script (recommended). Use only one of the two — running both would download the same files twice, and `wget` would save the duplicates with a `.1` suffix (e.g. `SRR3222409-19_1.fq.gz.1`).
+
+**Option 1 — run the commands directly:**
 
 ``` bash
 wget https://github.com/Nilsson-D/dummy_data/raw/refs/heads/main/RNA-seq/data/SRR3222409-19_1.fq.gz
@@ -165,7 +169,7 @@ wget https://github.com/Nilsson-D/dummy_data/raw/refs/heads/main/RNA-seq/data/SR
 wget https://github.com/Nilsson-D/dummy_data/raw/refs/heads/main/RNA-seq/data/SRR3222414-19_2.fq.gz
 ```
 
-To create the script go to the `scripts` folder
+**Option 2 — create and run a script (recommended):** To create the script, go to the `scripts` folder
 
 ``` bash
 cd ../scripts
@@ -421,7 +425,7 @@ These are the parameters that we want to specify for the mapping run:
 
 - Specify the number of threads
 
-- Specify the full genome index path
+- Specify the chromosome 19 index path
 
 - Specify a summary file
 
@@ -612,6 +616,12 @@ Next, we need to index these BAM files. Indexing creates `.bam.bai` files which 
 Index all BAM files. Write a for-loop to index all BAM files using the command `samtools index file.bam`. In the `scripts` directory, create a file `samtools_index_bam.sh`
 
 ``` bash
+nano ../scripts/samtools_index_bam.sh
+```
+
+Add the following to the file:
+
+``` bash
 #!/bin/bash
 
 for i in *.bam
@@ -741,20 +751,19 @@ You should be standing here to run this:
 And run this in the terminal.
 
 ``` bash
-multiqc -interactive ../
+multiqc --interactive ../
 ```
 
 ``` text
 /// MultiQC 🔍 v1.35
 
-     update_config | Report title: nteractive
        file_search | Search path: /home/danielni/rnaseq
          searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 74/74  
      featurecounts | Found 6 reports
            bowtie2 | Found 6 reports
             fastqc | Found 12 reports
-     write_results | Data        : nteractive_multiqc_report_data
-     write_results | Report      : nteractive_multiqc_report.html
+     write_results | Data        : multiqc_data
+     write_results | Report      : multiqc_report.html
            multiqc | MultiQC complete
 ```
 
@@ -948,16 +957,16 @@ head go_up.txt
 **How to interpret:** A GO term describes a biological process, molecular function or cellular component. `numDEInCat` is the number of genes from the selected DE list annotated to the term; `numInCat` is the size of that term in the annotation universe. The `over_represented_pvalue` is evidence for enrichment, not the fold change of a pathway. Many terms overlap and are biologically related; avoid interpreting every row as an independent mechanism.
 
 ``` text
-category    over_represented_pvalue under_represented_pvalue    numDEInCat  numInCat    term    ontology
-GO:0043292  2.07289180623375e-68    1   87  244 contractile fiber   CC
-GO:0030016  5.26333985745011e-68    1   85  231 myofibril   CC
-GO:0030017  3.90656884143791e-65    1   79  204 sarcomere   CC
-GO:0061061  1.52243637401054e-58    1   127 759 muscle structure developmentBP
-GO:0003012  1.31166741299928e-47    1   90  449 muscle system process   BP
-GO:0042692  7.76687599976956e-43    1   87  474 muscle cell differentiation BP
-GO:0051146  1.50980227918854e-42    1   76  351 striated muscle cell differentiation    BP
-GO:0031674  3.3718549770267e-41 1   53  146 I band  CC
-GO:0006936  4.49551826193807e-38    1   69  324 muscle contraction  BP
+category    over_represented_pvalue  under_represented_pvalue  numDEInCat  numInCat  term                                  ontology
+GO:0043292  2.07289180623375e-68     1                         87          244       contractile fiber                     CC
+GO:0030016  5.26333985745011e-68     1                         85          231       myofibril                             CC
+GO:0030017  3.90656884143791e-65     1                         79          204       sarcomere                             CC
+GO:0061061  1.52243637401054e-58     1                         127         759       muscle structure development          BP
+GO:0003012  1.31166741299928e-47     1                         90          449       muscle system process                 BP
+GO:0042692  7.76687599976956e-43     1                         87          474       muscle cell differentiation           BP
+GO:0051146  1.50980227918854e-42     1                         76          351       striated muscle cell differentiation  BP
+GO:0031674  3.3718549770267e-41      1                         53          146       I band                                CC
+GO:0006936  4.49551826193807e-38     1                         69          324       muscle contraction                    BP
 ```
 
 The columns of the results tables are:
@@ -979,7 +988,7 @@ The output of `goseq` contains unadjusted enrichment p-values, so we first apply
 You are still in `rnaseq/funannot`. Create a small R script:
 
 ``` bash
-nano ../scipts/plot_go_up.R
+nano plot_go_up.R
 ```
 
 Copy the following into the script, then save it:

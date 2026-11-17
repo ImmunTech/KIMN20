@@ -91,7 +91,7 @@ The temporary environment will remain installed. Its name is printed at the end;
 - The disposable Conda environment was removed automatically after the run.
 - Report: `/home/massivol/rnaseq_validation_20261112_110000/REPORT.txt` (logs in `.../logs`, environment evidence in `.../evidence`).
 
-This run validates the scientific pipeline and the 46 checks; it does not certify the teaching HTML. The outstanding corrections to the lab pages (e.g. the `../scipts/` path typo in the GO-plot section) are tracked separately with Daniel.
+This run validates the scientific pipeline and the 46 checks; it does not certify the teaching HTML. The outstanding corrections to the lab pages (e.g. the `../scipts/` path typo in the GO-plot section, the `environment.yml` download URL, and the `multiqc --interactive` sample output) were incorporated into `labs/lab_RNAseq.qmd`, and `labs/lab_RNAseq.html` was regenerated from the corrected source, on 17 November 2026. These teaching-page edits are not covered by the 46 scientific checks above.
 
 ### 11 November 2026 — `bioinf-serv2` (previous baseline)
 

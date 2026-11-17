@@ -221,23 +221,21 @@ After receiving raw reads from a high throughput sequencing centre it is essenti
 Change into the `2_fastqc` directory. Use `pwd` to check if you are standing in the correct directory.
 
 ``` bash
-
 cd ../2_fastqc
 pwd
 ```
 
 `/home/<your-user>/rnaseq/2_fastqc` (replace with your own username)
 
-The command to run FastQC is following (when in the directory given above)
+The command to run FastQC is following (when in the directory given above). Replace `filename.fq.gz` with a real filename, for example `SRR3222409-19_1.fq.gz`.
 
 ``` bash
-
 fastqc --outdir . ../1_raw/filename.fq.gz
 ```
 
 The --outdir`.` flag tells FastQC to write its output to `.` (the current directory). In the next example, `*.fq.gz` expands to all matching FASTQ files, so it processes both mates of each sample.
 
-Or we can specify all at once
+To run FastQC on all 12 FASTQ files at once:
 
 ``` bash
 fastqc --outdir . ../1_raw/*.fq.gz

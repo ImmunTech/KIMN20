@@ -101,7 +101,7 @@ export R_LIBS_USER=""
 export R_LIBS_SITE=""
 ```
 
-### **Set up working directory**
+### Set up working directory
 
 Before beginning, open a Linux terminal and activate the RNA-seq environment provided for the course, if needed (for example, `conda activate rnaseq_lab`). You will remain in the terminal throughout the exercises. Use `pwd` to print the current directory, `ls` to list its contents and `cd` to change directories. All relative paths in the examples depend on being in the indicated folder.
 
@@ -138,7 +138,7 @@ mkdir mouse_chr19_hisat2
 cd ..
 ```
 
-#### **Download the data**
+#### Download the data
 
 FASTQ files contain sequencing reads and their base-quality scores. The suffix `_1` identifies the first read in a pair and `_2` the second. Both must be kept together during paired-end alignment. The `.gz` extension indicates compression; FastQC and HISAT2 can usually read these files without manually uncompressing them.
 
@@ -210,7 +210,7 @@ bash ../scripts/get_data.sh
 
 Check the result with `ls -lh`. You should have 12 FASTQ files, two for each of the six samples.
 
-### **FastQC**
+### FastQC
 
 **What are we checking?** FastQC evaluates individual FASTQ files; it does **not** map reads or measure gene expression. Its modules cover read quality across cycles, base composition, sequence duplication, adapter content and other sequence-level properties. Some warnings may arise from the biology or the library preparation and should be interpreted rather than treated as automatic failures.
 
@@ -286,7 +286,7 @@ After the FastQC run, there should be a `.zip` file and an `.html` report for ev
 
 **Remember:** A FastQC warning is not the same as an alignment failure or a differentially expressed gene. Each tool answers a different question.
 
-### **HISAT2**
+### HISAT2
 
 A read is usually shorter than a gene, so alignment is the step that identifies where each sequenced fragment likely originated in the reference genome. HISAT2 is *splice aware*: it can align reads that cross exon–exon junctions, which is important because RNA has been spliced but the reference genome contains introns.
 
@@ -294,7 +294,7 @@ A read is usually shorter than a gene, so alignment is the step that identifies 
 
 After verifying that the quality of the raw sequencing reads is acceptable, we will map the reads to the reference genome. There are many mappers/aligners available, so it may be good to choose one that is adequate for your type of data. Here, we will use a software called [HISAT2](http://www.ccb.jhu.edu/software/hisat/index.shtml) (Hierarchical Indexing for Spliced Alignment of Transcripts) as it is a good general purpose splice-aware aligner. It is fast and does not require a lot of RAM. Before we begin mapping, we need to obtain genome reference sequence (`.fasta` file) and build an aligner index. Due to time constraints, we will build an index only on chromosome 19.
 
-#### **Get reference**
+#### Get reference
 
 The reference FASTA contains genome sequence. The GTF contains genomic coordinates and gene/transcript/exon annotations. For consistent results, the genome assembly and annotation should correspond to the same Ensembl release. Here we use Ensembl release 99 (GRCm38) to match the original example.
 
@@ -354,7 +354,7 @@ drwxrwxr-x 2 user user 4.0K Nov  7 12:21 mouse_chr19_hisat2
 -rwxrwxr-x 1 user user  60M Nov  7 12:06 Mus_musculus.GRCm38.dna.chromosome.19.fa
 ```
 
-#### **Build index**
+#### Build index
 
 HISAT2 does not search the unindexed FASTA from scratch for every read. The index is a set of data structures built once from the genome that makes later alignments much faster. The `.ht2` files you will see are the index components and not aligned reads.
 
@@ -404,7 +404,7 @@ There should be eight `.ht2` files. Their number and sizes are expected to diffe
 
 The index for the whole genome would be created in a similar manner. It just requires more time to run.
 
-#### **Map reads**
+#### Map reads
 
 For paired-end data, one alignment command takes both FASTQ files belonging to the same sample. HISAT2 reports mapping statistics, while the alignment records themselves are saved in SAM/BAM format.
 
@@ -571,7 +571,7 @@ cat SRR3222409-19.summary
 98.10% overall alignment rate
 ```
 
-#### **Understanding the HISAT2 alignment summary**
+#### Understanding the HISAT2 alignment summary
 
 HISAT2 produces a summary describing how successfully the sequencing reads were aligned to the reference genome. Since we are working with **paired-end sequencing**, each fragment is represented by two reads (also called *mates*), one from each end of the fragment.
 
@@ -648,7 +648,7 @@ ls -l
 -rw-rw-r-- 1 user user    43848 Nov  7 12:41 SRR3222409-19.bam.bai
 ```
 
-### **featureCounts**
+### featureCounts
 
 **What happens here?** HISAT2 answers *where the reads map*; featureCounts asks *which annotated genes those mapped reads overlap*. To do this, it combines the BAM alignments with the GTF gene annotation. Some alignments will remain unassigned because they fall outside annotated exons, are ambiguous or do not satisfy counting rules. These are not necessarily sequencing errors.
 
@@ -730,7 +730,7 @@ wget https://raw.githubusercontent.com/Nilsson-D/dummy_data/refs/heads/main/RNA-
 `counts_full.txt` is provided so the statistical analysis can use counts across the complete genome.
 :::
 
-### **MultiQC**
+### MultiQC
 
 MultiQC is a **report aggregator**, not an additional alignment or counting algorithm. It scans files produced by programs such as FastQC, HISAT2 and featureCounts and summarizes their metrics in one HTML report. You may see different sample totals across panels because they refer to different stages of processing or counting units.
 
@@ -782,7 +782,7 @@ You can open the HTML files in a browser.
 
 Some MultiQC versions show HISAT2 summaries under a Bowtie2-family panel because the log formats are related. The name of that panel does not mean you ran a different aligner.
 
-### **DESeq2**
+### DESeq2
 
 This is where we move from processing sequencing reads to asking a biological question: **which genes differ between KO and Wt samples?** DESeq2 uses a model for *raw gene counts*, estimates sequencing-depth normalization factors and variability across biological replicates, then tests the difference between conditions. We only have two groups and will perform **one comparison: KO versus Wt**, as in the original lab.
 
@@ -871,7 +871,7 @@ For the plotting exercise, make sure you have the **actual VST output generated 
 
 These sections extend the **same KO-versus-Wt analysis**. First, we look for biological processes among the DE genes. Then we visualize the results with the four figures from the original plotting script.
 
-### **Installing R packages**
+### Installing R packages
 
 Before continuing, make sure your RNA-seq environment includes the Bioconductor packages needed:
 
@@ -891,7 +891,7 @@ Rscript -e 'pkgs <- c("goseq", "reactome.db", "org.Mm.eg.db", "EnsDb.Mmusculus.v
 
 If a package is missing, use the course environment instructions or ask the instructor before running the script.
 
-### **Functional annotation**
+### Functional annotation
 
 In this part of the exercise we will address the question which biological processes are affected in the experiment; in other words we will functionally annotate the results of the analysis of differential gene expression (performed in the main part of the exercise). We will use **Gene Ontology (GO)** and **Reactome** databases.
 
@@ -903,7 +903,7 @@ We will use the R / Bioconductor package **goseq**, designed to perform RNA-seq 
 
 In this part, we will use the same data as in the main workflow. The starting point of the exercise is the file with results of the differential expression produced in the main part of the exercise.
 
-#### **Preparation**
+#### Preparation
 
 Change from `4_dge` to the `funannot` directory:
 
@@ -942,7 +942,7 @@ ls -l
 -rw-rw-r-- 1 user user  157298 Nov  7 14:17 reactome_up.txt
 ```
 
-#### **Interpretation**
+#### Interpretation
 
 The results are saved to four tables: GO terms for up-regulated genes (go_up.txt), GO terms for down-regulated genes (go_down.txt) and similarily, Reactome pathways for up-regulated genes (reactome_up.txt) and Reactome pathways for down-regulated genes (reactome_down.txt).
 
@@ -977,7 +977,7 @@ category over_represented_pvalue under_represented_pvalue numDEInCat numInCat te
 category over_represented_pvalue under_represented_pvalue numDEInCat numInCat PATHNAME
 ```
 
-#### **Optional: Visualise enriched GO terms**
+#### Optional: Visualise enriched GO terms
 
 The `head` command displays the results as a table, but a figure makes it easier to spot recurring biological themes. We can make a **dot plot of the 12 most significant enriched GO terms** in `go_up.txt`. Each dot represents a GO term. The horizontal position shows statistical evidence for enrichment, the dot size shows the number of up-regulated DE genes associated with that term, and the colour distinguishes biological process (**BP**), cellular component (**CC**) and molecular function (**MF**).
 
@@ -1029,7 +1029,7 @@ Rscript plot_go_up.R
 
 ![](images/go_up_top_terms.png)
 
-### **RNA-Seq plots**
+### RNA-Seq plots
 
 R is also useful for visualizing the output of RNA-seq analyses. The original plotting script creates **four figures from the same DESeq2 result**: PCA, MA plot, volcano plot and a heatmap. You can run it directly from the terminal. If you are curious about a figure's settings, open the script with `nano` or `less`.
 
@@ -1053,7 +1053,7 @@ Rscript plot_figures.R
 
 This generates four PNG files in `plots/`: `pca_plot.png`, `ma_plot.png`, `volcano_plot.png` and `heatmap_top_50.png`. Open the images in an image viewer. The examples displayed below are illustrations; their precise values/appearance can differ depending on the input files and the plotting script version.
 
-#### **PCA plot**
+#### PCA plot
 
 **What it shows:** Each point is an entire RNA-seq sample and not a gene. A PCA reduces the thousands of expression measurements to a few components that capture prominent patterns across the samples. For this plot, the script uses the VST gene-expression matrix and labels the six sample accessions. 
 
@@ -1071,7 +1071,7 @@ A popular way to visualise general patterns of gene expression in your data is t
 
 **Look at your plot:** Are the three KO replicates near each other, and are they separated from the three Wt replicates? Remember that separation suggests an expression pattern but is not itself a formal test for differential expression. For the script used in this lab, PC1 and PC2 are plotted without a percentage of variance explained on the axes.
 
-#### **MA-plot**
+#### MA-plot
 
 **What it shows:** Each point is a gene. The horizontal axis represents average expression (`log10(baseMean)` in the supplied script) and the vertical axis represents the estimated KO-versus-Wt log2 fold change. Genes at zero show little difference; genes with large positive or negative values show larger estimated changes. With low counts, fold-change estimates can be less stable.
 
@@ -1081,7 +1081,7 @@ An MA-plot plots the mean expression and estimated log-fold-change for all genes
 
 The blue points are selected using `padj < 0.05`. This helps you see whether significant genes tend to be highly or weakly expressed.
 
-#### **Volcano plot**
+#### Volcano plot
 
 **What it shows:** Each point is again one gene. The horizontal axis is log2 fold change; the vertical axis describes the strength of statistical evidence (here, `-log10(pvalue)`). Genes farther from zero have larger estimated changes, while those higher in the figure have smaller unadjusted p-values.
 
@@ -1091,7 +1091,7 @@ A related type of figure will instead plot fold change (on log2 scale) on the x-
 
 The blue points are selected using *adjusted* p-value (`padj < 0.05`) **and** `|log2FoldChange| > 1`.
 
-#### **Heatmap**
+#### Heatmap
 
 **What it shows:** Rows are genes and columns are samples. The plotting script selects the 50 genes with the lowest (unadjusted) p-values and displays their VST expression profiles. The values are **scaled within each gene**, so the colors show which samples are higher or lower *for that gene*, not which genes have the largest absolute counts.
 
